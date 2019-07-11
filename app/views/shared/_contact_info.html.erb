@@ -1,0 +1,55 @@
+      <div class="contact">
+        <p class="title_S"><%=t('shared.contact_info.contact_us')%></p>
+
+        <%= form_tag enquire_path, {:class => 'form_validate'} do %>
+          <%= hidden_field_tag :user_id, object.id %>
+          <%= hidden_field_tag :item, item %>
+          <%= hidden_field_tag :item_id, item_id  %>
+
+          <div class="field">
+            <%= text_field_tag :name, nil,  {:class => 'required', placeholder: t('shared.contact_info.your_name')} %>
+
+          </div>
+          <div class="field">
+            <%= text_field_tag :company, nil, {placeholder: t('shared.contact_info.your_company')} %>
+
+          </div>
+          <div class="field">
+            <%= text_field_tag :email, nil,  {:class => 'required', placeholder: t('shared.contact_info.your_email')} %>
+
+          </div>
+
+
+
+          <div class="field">
+            <%= text_field_tag :phone , nil,  {placeholder: t('shared.contact_info.contact_telephone')}%>
+
+          </div>
+          <div class="field">
+            <%= text_field_tag :city, nil ,  { placeholder: t('shared.contact_info.your_city')}%>
+
+          </div>
+          <div class="field">
+            <%= text_field_tag :country, nil ,  { placeholder: t('shared.contact_info.your_country')} %>
+
+          </div>
+
+          <div class="field">
+            <%= text_area_tag :message, nil,  {:class => 'required', placeholder: t('shared.contact_info.commentary')} %>
+
+          </div>
+          <div class="field">
+            <div class="check" class="required">
+              <input type="checkbox" id="terms" >
+              <label for="terms"><%=t('shared.contact_info.terms_of_use1')%><a href="<%= legal_notice_static_index_path %>" target='_blank'><%=t('shared.contact_info.terms_of_use2')%></a></label>
+            </div>
+          </div>
+          <%= recaptcha_tags site_key: Rails.application.secrets.recaptcha_site_key %>
+        <br>
+          <div class="actions">
+            <%= submit_tag(t('shared.contact_info.send_comments'), :class=>"button button-expand") %>
+
+          </div>
+        <% end %>
+
+      </div><!-- .contact -->

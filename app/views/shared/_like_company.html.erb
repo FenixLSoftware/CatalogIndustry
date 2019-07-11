@@ -1,0 +1,19 @@
+      <div class="box">
+        <% if current_user.present? %>
+          <% if current_user.likes?(@company) %>
+            <a class="button_secondary button-expand" href="<%= like_user_path(@company) %>"><%=t('shared.like_company.remove_from_favorites')%></a>
+          <% else %>
+            <a class="button_secondary button-expand" href="<%= like_user_path(@company) %>"><%=t('shared.like_company.add2favorites')%></a>
+          <% end %>
+        <% else %>
+          <a class="openLogin button_secondary button-expand" href="#"><%=t('shared.like_company.add2favorites')%></a>
+        <% end %>
+
+        <div class="amounts">
+          <ul>
+            <li><strong><%= @company.likers(User).size.to_i %></strong> <%=t('shared.like_company.followers')%></li>
+            <li><strong><%= @company.catalogs.visible.size.to_i %></strong> <%=t('shared.like_company.catalogs')%></li>
+            <li><strong><%= @company.products.visible.size.to_i %></strong> <%=t('shared.like_company.products')%></li>
+          </ul>
+        </div>
+      </div><!-- .box -->

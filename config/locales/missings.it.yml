@@ -1,0 +1,87 @@
+it:
+  m:
+    placeholder_search: 'Ricerca per azienda, categoria o prodotto'
+    access_to_companies: 'Accesso alle aziende'
+    results_for: 'Risultati per '
+    categories: 'Categorie'
+    products: 'Prodotti'
+    companies: 'Aziende'
+    catalogs: 'Cataloghi'
+    posts: 'Notizie'
+    see_all: 'Vedere tutto'
+    manufacturer: 'Fabbricante:'
+    back: 'Indietro'
+    language: 'Lingua'
+    remove_pdf: 'Eliminare PDF'
+    download: 'Scaricare'
+    remove_catalog: 'ELIMINARE CATALOGO'
+    cant_be_undone: 'Questa azione non può essere annullata.'
+    remove: 'Cancellare'
+    picture_company: 'Immagine dell’azienda (1440x220 px)'
+    professionals_listing: 'Elenco dei professionisti'
+    companies_listing: 'Elenco delle aziende'
+    payments_listing: 'Elenchi dei pagamenti'
+    company: 'Azienda'
+    validated_catalog: 'Validato da CatalogIndustry'
+    actual_plan: 'Piano attuale'
+    premium: 'Premium'
+    till: 'fino a'
+    basic_plan_info: 'Informazioni sul piano di base'
+    upgrade_to_premium: 'Aggiornare al piano Premium'
+    payments_history: 'Cronologia di pagamenti'
+    change_card: 'Cambiare carta'
+    disable_premium: 'Disattiva il piano Premium'
+    cookies1: 'Questo sito Web utilizza cookies per garantire una migliore esperienza dell’utente.'
+    cookies_ok: 'Scartare'
+    cookies_learn: 'Saperne di più'
+    catalog_favorite: 'Catalog è un favorito'
+    catalog_no_favorite: 'Catalog NON è un favorito'
+    contact_sent: 'Richiesta di contatto inviata'
+    product_favorite: 'Il prodotto è uno dei tuoi favoriti'
+    product_no_favorite: 'Il prodotto NON è più uno dei tuoi favoriti'
+    saved_search: 'La tua ricerca è stata salvata'
+    info_sent: 'Richiesta di informazioni inviata'
+    company_favorite: 'L azienda è una delle tue favorite'
+    company_no_favorite: 'L azienda NON è più una delle tue favorite'
+    newsletter_subscribed: 'Sei iscritto alla newsletter'
+    deleted_catalog: 'Catalogo eliminato'
+    deleted_product: 'Prodotto eliminato'
+    deleted_new: 'Messaggio eliminato'
+    updated_catalog: 'Catalogo aggiornato'
+    updated_product: 'Prodotto aggiornato'
+    updated_new: 'Messaggio aggiornato'
+    created_ok: 'Creato correttamente'
+    review_info: 'Verificare le informazioni fornite'
+    removed_info: 'Informazioni eliminate'
+    plan_changed: 'Piano cambiato'
+    error_in_card: 'Errore nei dati della carta / Carta respinta'
+    updated_data: 'Dati aggiornati'
+    password_changed: 'Password cambiata'
+    password_not_changed: 'Password errata. Non è stata fatta la modifica'
+    your_search: 'Scrivi i termini di ricerca'
+    recieve_new_link_mail: 'Riceverai un link nella tua busta di posta elettronica per cambiare la password'
+    company_name: 'Nome dell’azienda'
+    recaptcha: 'Ti preghiamo di marcare “Non sono un robot” prima di inviare le informazioni.'
+    delete_search: 'Elimina questa ricerca'
+    categories_like: 'Settore favorito'
+    data_not_found: 'Nessuna informazione trovata'
+    password_8_chars: 'Le password devono avere almeno 8 caratteri. La password non è stata cambiata'
+
+    pay1: Il costo è di EUR 99,99 al mese (più tasse) fino a quando non decidi di modificare o annullare il piano.
+    pay2: Posso abbassare il livello del mio piano?
+    pay3: Sì, puoi fare il downgrade o annullare il tuo abbonamento quando desideri
+    pay4: Carta attuale
+    pay5: Nome
+    pay6: Nessuna carta assegnata
+    pay7: Informazioni sulla carta di credito
+    pay8: Numero di carta di credito o di debito
+    pay9: Data di scadenza
+    pay10: Codice di sicurezza
+    pay11: Campi obbligatori
+    pay12: Riepilogo degli acquisti
+    pay13: Quota mensile
+    pay14: IVA (21% )
+    pay15: Totale
+    pay16: Iscriviti al piano PREMIUM
+    pay17: Nuova carta
+    pay18: Annullare

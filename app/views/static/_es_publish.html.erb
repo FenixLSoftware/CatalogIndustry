@@ -1,0 +1,113 @@
+
+<body id="publish">
+
+<nav class="breadcrumb">
+  <ul>
+    <li><a href="<%= root_path %>">Inicio</a></li>
+    <li class="current">Publicar en Catalog Industry</li>
+  </ul>
+</nav><!-- .breadcrumb -->
+
+<section class="publish_hero" style="background-image: url(<%= asset_path ("frontend/backgrounds/register.jpg")%>)">
+  <div class="container">
+
+    <div class="publish_hero_intro">
+      <h2 class="title_L">Posiciona tu empresa, catálogos y productos en Internet</h2>
+      <p>Los profesionales de la industria buscan a diario en Internet información comercial y técnicas, convirtiendo a tus catálogos en la mejor herramienta para promocionar tus productos y/o servicios, si los posicionas en los primeros resultados de búsqueda.</p>
+    </div><!-- .publish_hero_intro -->
+
+    <% unless current_user.present? %>
+    <div class="publish_hero_form">
+
+      <%= render partial: 'shared/register'%>
+    </div>
+
+    <% end %>
+
+  </div>
+
+
+
+</section><!-- .publish_hero -->
+
+<section class="publish_features">
+  <div class="container">
+
+    <h3 class="publish_features_title">Beneficios para tu empresa</h3>
+    <p>Potente generación de leads, marketing de contenido y branding industrial que conecta su negocio con una audiencia instantánea de compradores industriales.</p>
+
+    <div class="row">
+      <div class="col col_1of2">
+
+        <div class="publish_features_item">
+          <h4>Captación de leads más efectiva</h4>
+          <p>La posibilidad de ser encontrado por los profesionales de la industria aumenta cuando tu catálogo está publicado en Internet.</p>
+        </div>
+
+        <div class="publish_features_item">
+          <h4>Promociona nuevos productos y catálogos industriales</h4>
+          <p>Añade tus productos y catálogos y consigue un mayor acercamientos de estos y tus clientes potenciales.</p>
+        </div>
+
+        <div class="publish_features_item">
+          <h4>Presencia en Redes Sociales</h4>
+          <p>Darte a conocer, promociona tus catálogos y productos industriales e interactúa con posibles clientes a diario.</p>
+        </div>
+
+      </div><!-- .col col_1of2 -->
+      <div class="col col_1of2">
+
+        <div class="publish_features_item">
+          <h4>Incrementa tus ventas</h4>
+          <p>Recibe solicitudes de información y accede a “visitantes identiﬁcados” de la plataforma para ayudar a tu fuerza comercial.</p>
+        </div>
+
+        <div class="publish_features_item">
+          <h4>Visibilidad permanente online</h4>
+          <p>Stand virtual (presentación de  empresa, datos de contacto, enlace web, catálogos, productos, etc.) los 365 días del año con visitas diarias.</p>
+        </div>
+
+        <div class="publish_features_item">
+          <h4>Pontencia tu imagen internacional</h4>
+          <p>Promociona tus catálogos y productos industriales en varios idiomas y encontrar nuevos clientes por todo el mundo.</p>
+        </div>
+
+      </div><!-- .col col_1of2 -->
+    </div><!-- .row -->
+
+  </div>
+</section>
+
+<aside class="publish_banner">
+  <div class="container">
+    <h3 class="publish_banner_title">Visitas diarias garantizadas</h3>
+    <p>Tu plataforma multimedia especializada en comunicación industrial</p>
+    <p>¡La publicidad más efectiva con visitas garantizadas!</p>
+  </div>
+</aside>
+
+<div class="publish_map">
+  <div class="container">
+    <!-- <img src="images/publish-map.png" alt="Mapa"> -->
+    <%= image_tag 'frontend/publish-map.png' %>'
+  </div>
+</div>
+
+<div class="publish_contact">
+  <div class="container">
+    <p>Contacte con nosotros en el (+34) 912 303 494 ó a través de la cuenta</p>
+    <p><a href="mailto:ayuda@catalogindustry.com">info@catalogindustry.com</a></p>
+  </div>
+</div>
+
+
+
+
+<script src="assets/javascripts/dependencies/jquery-3.1.1.min.js"></script>
+<script src="assets/javascripts/dependencies/jquery.flexslider.js"></script>
+<script src="assets/javascripts/dependencies/masonry.pkgd.min.js"></script>
+<script src="assets/javascripts/all.js"></script>
+
+
+
+</body>

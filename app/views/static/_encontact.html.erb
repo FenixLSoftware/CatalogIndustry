@@ -1,0 +1,54 @@
+
+<main id="main" class="contact">
+  <div class="container">
+
+    <h2 class="title_L">Contact</h2>
+
+    <p>If you have any questions or comments, fill in the following form and we will do our best to respond within one business day.</p>
+
+    <%= form_tag send_contact_static_index_path, {class: 'form_validate'} do %>
+      <h3 class="legend">Contact information</h3>
+
+      <div class="field">
+        <%= text_field_tag :name,'',class: 'required' %>
+        <label for="name">Name * (required)</label>
+      </div><!-- .field -->
+
+      <div class="field">
+        <%= text_field_tag :company,'',class: 'required' %>
+        <label for="name">Company * (required)</label>
+      </div><!-- .field -->
+
+      <div class="field">
+        <%= text_field_tag :email,'',class: 'required' %>
+        <label for="mail">Email * (required)</label>
+      </div><!-- .field -->
+
+      <div class="field">
+        <%= text_field_tag :phone %>
+        <label for="phone">Phone</label>
+      </div><!-- .field -->
+
+      <div class="field">
+        <%= text_field_tag :city,'',class: 'required' %>
+        <label for="mail">City * (required)</label>
+      </div><!-- .field -->
+
+      <div class="field">
+        <%= text_field_tag :country,'',class: 'required' %>
+        <label for="mail">Country * (required)</label>
+      </div><!-- .field -->
+
+
+      <div class="field">
+        <label for="message">How can we help you?</label>
+        <%= text_area_tag :message,'',class: 'required' %>
+      </div>
+
+      <div class="actions">
+        <button class="button button-expand" type="submit">Send request</button>
+      </div>
+    <% end %>
+
+  </div><!-- .container -->
+</main>

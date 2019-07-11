@@ -1,0 +1,381 @@
+
+
+<% if @user.errors.any? %>
+ <div class="alert">
+
+
+  <% @user.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
+</div>
+<% end %>
+
+  <%= form_for [:backend, @user], :html => { :multipart => true, class: 'form_validate' } do |f| %>
+
+    <% unless @user.role_professional? %>
+      <% if (@user.role_company? && @user.validated?) || @user.role_admin? %>
+
+      <% else %>
+          <div id="card" class="content_box">
+
+                <h2 class="content_title">Usuario / Empresa no validados aún...</strong></h2>
+                <h2 class="content_title">Estamos analizando su solicitud</h2>
+
+          </div>
+      <% end %>
+    <% end %>
+
+    <% if @user.role_professional? && params[:upgrade] != '1' %>
+      <div class="content_box">
+
+        <%= t('backend.users.form.update_account') %>
+        <br>
+        <br>
+
+        <a class="button button-big pull-right" href="<%= edit_backend_user_path(@user, upgrade: 1) %>"><%= t('backend.users.form.update_2_company')%></a>
+        <br>
+        <br>
+
+      </div>
+    <% end %>
+
+
+
+
+    <% if params[:upgrade] == '1' || @user.role_company? %>
+      <div class="content_box">
+          <!-- # categorias actuales del catalogo -->
+
+          <h2 id='#company_data' class="content_title"><%= t('backend.users.form.company_information') %></h2>
+
+
+          <div class="field">
+            <label for="name"><%= t('backend.users.form.company_name') %></label>
+            <%=f.text_field :company_name, :maxlength => 250, class: 'required' %>
+
+          </div>
+
+          <div class="field">
+            <label for="name"><%= t('backend.users.form.web') %></label>
+            <%=f.text_field :website, :maxlength => 250, class: 'required' %>
+
+          </div>
+
+          <div class="field">
+            <label for="name"><%= t('backend.users.form.phone') %></label>
+            <%=f.text_field :phone, :maxlength => 250, class: 'required' %>
+
+          </div>
+          <div class="field">
+            <label for="name"><%= t('backend.users.form.id_number') %></label>
+            <%=f.text_field :vat, :maxlength => 250 %>
+
+          </div>
+
+
+          <div class="field">
+            <label for="name"><%= t('backend.users.form.address') %></label>
+            <%=f.text_field :address, :maxlength => 250 %>
+
+          </div>
+
+          <div class="field">
+            <label for="name"><%= t('backend.users.form.postal_code') %></label>
+            <%=f.text_field :postal, :maxlength => 250 %>
+
+          </div>
+          <div class="field">
+            <label for="name"><%= t('backend.users.form.city') %></label>
+            <%=f.text_field :city, :maxlength => 250 %>
+
+          </div>
+
+          <div class="field">
+            <label for="name"><%= t('backend.users.form.state_or_province') %></label>
+            <%=f.text_field :state, :maxlength => 250 %>
+          </div>
+
+
+          <div class="field">
+            <label for="name"><%= t('backend.users.form.country') %></label>
+            <%#=f.text_field :country, :maxlength => 250 %>
+            <div class="select">
+              <%=f.country_select :country, priority_countries: ["ES", "US", "GB", "DE"] %>
+            </div>
+          </div>
+
+
+
+          <div class="field">
+            <label for="name"><%= t('backend.users.form.logotype') %></label>
+            <%= image_tag(f.object.company_picture.url, width: 250,) if f.object.company_picture.present? %>
+            <% if f.object.company_picture.present? %>
+              <%=f.file_field :company_picture,  class: '', onchange: "validateFiles(this);" %>
+            <% else %>
+              <%=f.file_field :company_picture, class: 'required', onchange: "validateFiles(this);" %>
+            <% end %>
+          </div>
+
+          <div class="field">
+            <label for="name"><%= t('m.picture_company') %></label>
+            <%= image_tag(f.object.logo.url, width: 250,) if f.object.logo.present? %>
+            <%=f.file_field :logo, onchange: "validateFiles(this);" %>
+          </div>
+
+
+
+
+      </div>
+
+      <div class="content_box">
+      <h2 class="content_title"><%= t('backend.users.form.company_description')%></h2>
+
+
+      <div class="tabs">
+      <nav class="tabs_menu">
+        <ul>
+          <li class="active"><a href="#"><%=t('backend.catalog.form.english')%></a></li>
+          <li class=""><a href="#"><%=t('backend.catalog.form.spanish')%></a></li>
+          <li class=""><a href="#"><%=t('backend.catalog.form.French')%></a></li>
+          <li class=""><a href="#"><%=t('backend.catalog.form.german')%></a></li>
+          <li class=""><a href="#"><%=t('backend.catalog.form.italian')%></a></li>
+          <li class=""><a href="#"><%=t('backend.catalog.form.chinese')%></a></li>
+
+        </ul>
+      </nav>
+
+      <% I18n.available_locales.each_with_index do |locale, idx| %>
+        <%= f.globalize_fields_for locale do |g| %>
+
+          <div class="tabs_content <%= idx == 0 ? 'active' : '' %>" >
+            <br><br>
+
+
+            <div class="field">
+              <label for="description"><%=t('backend.catalog.form.description')%> (<%= locale %>)</label>
+              <%= g.cktext_area :description %>
+
+            </div>
+
+
+          </div><!-- .tabs_content -->
+
+        <% end %>
+      <% end %>
+
+    </div>
+    </div>
+
+    <% if @user.role_company? && @user.validated? %>
+      <% if @user.current_plan == 1 %>
+        <div id="card" class="content_box">
+
+              <h2 class="content_title"><%= t('m.actual_plan') %>: <strong><%= t('m.premium') %></strong></h2>
+              <%= render :partial => 'premium_es' if I18n.locale == :es %>
+              <%= render :partial => 'premium_en' if I18n.locale == :en %>
+              <div class="actions">
+                  <%= link_to t('m.payments_history'), payments_backend_user_path(f.object),  class: 'button' %>
+                  <%= link_to t('m.change_card'), card_info_backend_user_path(@user),  class: "button" %>
+                  <%= link_to t('m.disable_premium'), switch_plan_backend_user_path(@user),  class: "button" %>
+              </div>
+
+        </div>
+      <% else %>
+        <div id="card" class="content_box">
+
+              <h2 class="content_title"><%= t('m.actual_plan') %>: <strong>Básico </strong>
+                <%= @user.payment_valid ? (' (' +  t("m.premium") + ' ' + t("m.till") + ': ' + @user.payments.where(success: true).order(created_at: :desc).last.next_payment.strftime('%d/%m/%Y') + ')') : '' %></h2>
+              <h2 class="content_title"><%= t('m.basic_plan_info') %></h2>
+
+        </div>
+
+        <div id="card" class="content_box">
+
+
+              <h2 class="content_title">Plan: <strong><%=  t("m.premium") %> </strong>
+
+              <%= render :partial => 'premium_es' if I18n.locale == :es %>
+              <%= render :partial => 'premium_en' if I18n.locale == :en %>
+
+
+
+                <div class="actions">
+                    <%= link_to t('m.upgrade_to_premium'), @user.payment_valid ? switch_plan_backend_user_path(@user) : card_info_backend_user_path(@user),  class: "button" %>
+                    <% if @user.payments.present? %>
+                      <%= link_to t('m.payments_history'),  payments_backend_user_path(@user),  class: "button" %>
+
+                    <% end %>
+
+                </div>
+
+        </div>
+
+
+      <% end %>
+
+
+      <% end %>
+
+
+
+
+    <% end %>
+
+
+    <div class="content_box">
+        <!-- # categorias actuales del catalogo -->
+
+
+
+        <h2 class="content_title"> <%= t('backend.users.form.personal_information') %></h2>
+
+
+        <div class="field">
+          <label for="name"><%= t('backend.users.form.full_name') %></label>
+          <%=f.text_field :name, :maxlength => 250 %>
+
+        </div>
+
+        <div class="field">
+          <label for="name"><%= t('backend.users.form.email') %></label>
+          <%=f.text_field :email, :maxlength => 250 %>
+
+        </div>
+
+        <div class="field">
+          <label for="name"><%= t('backend.users.form.position') %></label>
+          <%=f.text_field :position, :maxlength => 250 %>
+
+        </div>
+
+        <div class="field">
+          <label for="name"><%= t('backend.users.form.company_name') %></label>
+          <%=f.text_field :user_company_name, :maxlength => 250 %>
+
+        </div>
+
+        <div class="field">
+          <label for="name"><%= t('m.categories_like') %></label>
+
+          <%= f.object.likees(Category).map(&:name).join(',') %>
+
+        </div>
+
+
+        <% if current_user.role_admin? %>
+          <% unless f.object.role_admin? %>
+            <% if f.object.role_company? %>
+              <div class="field">
+                <label for="published"><%= t('backend.users.form.validated') %></label>
+                <div class="select">
+                  <%= f.select :validated, [[t('backend.catalog.form.active'), true], [t('backend.catalog.form.inactive'), false]] %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+
+
+    </div>
+
+    <div class="content_box">
+        <!-- # categorias actuales del catalogo -->
+
+        <h2 class="content_title"><%= t('backend.users.form.change_password') %></h2>
+
+
+        <div class="field">
+          <label for="name"><%= t('backend.users.form.current_password') %></label>
+          <%=f.password_field :pw_a, :maxlength => 250 %>
+
+        </div>
+
+        <div class="field">
+          <label for="name"><%= t('backend.users.form.new_password') %></label>
+          <%=f.password_field :pw_n, :maxlength => 250 %>
+
+        </div>
+
+    </div>
+
+
+   <div class="content_box">
+    <h2 class="content_title"><%=t('backend.catalog.form.save')%></h2>
+
+
+          <div class="actions">
+
+            <%= button_tag(type: "submit", class: "button") do %>
+                                <%=t('backend.catalog.form.save')%>
+                            <% end %>
+          </div>
+   </div>
+
+
+  <% end %>
+
+
+<script>
+
+
+    function validateFiles(inputFile) {
+      var maxExceededMessage = "This file exceeds the maximum allowed file size (80 MB)";
+      var extErrorMessage = "Only document file with extension: .pdf, .gif or .jpg is allowed";
+      var allowedExtension = ["jpg", "jpeg", 'gif', 'png'];
+
+      var extName;
+      var maxFileSize = $(inputFile).data('max-file-size');
+      var sizeExceeded = false;
+      var extError = false;
+
+      $.each(inputFile.files, function() {
+        if (this.size && maxFileSize && this.size > parseInt(maxFileSize)) {sizeExceeded=true;};
+        extName = this.name.split('.').pop();
+        if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
+      });
+      if (sizeExceeded) {
+        //window.alert(maxExceededMessage);
+        <%= add_gritter("Only document file with extension: .jpg, .jpeg, or .png is allowed", :title => "Extension error", :image => :error) %>
+        $(inputFile).val('');
+      };
+
+      if (extError) {
+        //window.alert(extErrorMessage);
+        <%= add_gritter("This file exceeds the maximum allowed file size (20 MB)", :title => "File size error", :image => :error) %>
+        $(inputFile).val('');
+      };
+    }
+
+
+  $(document).ready(function() {
+      $('.js-example-basic-multiple').select2({
+        closeOnSelect: false
+      });
+      // evita que select2 baja al top al seleccionar elemento
+      var scrollTop;
+      $('.js-example-basic-multiple').on("select2:selecting", function( event ){
+          var $pr = $( '#'+event.params.args.data._resultId ).parent();
+          scrollTop = $pr.prop('scrollTop');
+      });
+      $('.js-example-basic-multiple').on("select2:select", function( event ){
+          var $pr = $( '#'+event.params.data._resultId ).parent();
+          $pr.prop('scrollTop', scrollTop );
+      });
+
+
+  });
+
+  $('.tabs_menu a').on('click', function(e){
+    e.preventDefault();
+    var $tabs = $(this).closest('.tabs'),
+        $li = $(this).closest('li'),
+        index = $li.index();
+
+    $tabs.find('.tabs_menu li').removeClass('active');
+    $li.addClass('active');
+    $tabs.find('.tabs_content').removeClass('active');
+    $tabs.find('.tabs_content').eq(index).addClass('active');
+  });
+
+
+</script>

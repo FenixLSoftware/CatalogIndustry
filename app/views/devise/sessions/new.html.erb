@@ -1,0 +1,42 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {id: 'login', class: 'form_validate'}) do |f| %>
+    <div class="register_form">
+
+      <p><%= t('registrations.index.have_account') %></p>
+
+      <div class="row">
+        <div class="col col_1of2">
+          <div class="field">
+            <label for="register_login_mail"><%= t('registrations.index.mail') %></label>
+            <%= f.email_field :email, autofocus: true, placeholder: t('registrations.index.your_mail'), class: 'required email' %>
+          </div><!-- .field -->
+        </div>
+        <div class="col col_1of2">
+          <div class="field">
+            <label for="register_login_pass"><%= t('registrations.index.password') %></label>
+            <%= f.password_field :password, autocomplete: "off", placeholder: t('registrations.index.your_password'), class: 'required' %>
+          </div><!-- .field -->
+        </div>
+
+
+      <div class="form-check">
+        <label class="form-check-label">
+          <%= f.check_box :remember_me, class: 'form-check-input' %>
+          <%= t('shared.login.remember_me') %>
+        </label>
+      </div>
+
+      </div>
+
+      <div class="actions">
+
+
+      </div>
+      <div class="actions">
+        <%= f.submit t('registrations.index.log_in'), class: 'button_secondary button-expand' %>
+      </div>
+      <%= render 'devise/shared/links' %>
+    </div><!-- .register_form -->
+
+<% end %>
+
+

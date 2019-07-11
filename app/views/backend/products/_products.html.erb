@@ -1,0 +1,49 @@
+
+
+        <nav class="pagination">
+          <% unless params[:search].present? %>
+          <%= js_will_paginate @products_all %>
+          <% end %>
+        </nav><!-- .pagination -->
+
+          <% @products_all.each do |product| %>
+
+          <div class="products_item">
+
+            <figure class="product_media">
+              <% if product.validated? %>
+                <% if product.published? %>
+                  <span class="published"><%=t('backend.catalog.catalogs.published')%></span>
+                <% else %>
+                  <span class="unpublished">Disabled</span>
+                <% end %>
+
+              <% else %>
+                <span class="not_validated">Pending aproval</span>
+              <% end %>
+              <a href="<%= edit_backend_product_path(product) %>"><%= image_tag(product.first_picture) %></a>
+              <!-- <span><img src="images/content/product-1.jpg" alt=""></span> -->
+            </figure>
+            <div class="product_info">
+              <% if current_user.role_admin? %>
+                <h2 class="product_name"><%= product.user.present? ? product.user.company_name : 'No company!'%></h2>
+                <br>
+              <% end %>
+              <h2 class="product_name"><a href="<%= edit_backend_product_path(product) %>"><%= product.name %></a></h2>
+              <p class="product_description">
+                <% unless product.description.nil?  %>
+                <%= truncate(strip_tags(product.description).to_s, :length => 100, :separator => ' ')  %>
+                <%end%>
+                </p>
+            </div>
+          </div><!-- .products_item -->
+
+         <% end %>
+
+        <nav class="pagination">
+          <% unless params[:search].present? %>
+          <%= js_will_paginate @products_all %>
+          <% end %>
+        </nav><!-- .pagination -->
+
+

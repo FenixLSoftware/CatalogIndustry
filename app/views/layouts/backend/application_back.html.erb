@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta charset="utf-8">
+  <meta content="width=device-width,initial-scale=1.0" name="viewport">
+
+  <title>
+
+    <% unless @title.nil? %>
+        <%= @title %>
+    <% else %>
+        <%# raise "NO title" %>
+    <% end %>
+  </title>
+
+  <%= javascript_include_tag 'backend/application' %>
+  <%= stylesheet_link_tag 'backend/application' %>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+  <%= javascript_include_tag "jquery.validate.localization/messages_#{I18n.locale}" if I18n.locale != :en %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body id="">
+
+<main id="main">
+  <header class="sidebar">
+  <h1><a class="sidebar_logo" href="<%= root_path %>">Catalog Industry</a></h1>
+
+  <nav class="sidebar_menu">
+    <ul>
+      <% unless current_user.role_admin? %>
+        <% if current_user.role_company? %>
+          <li <%= params['controller'] == 'backend/dashboard' ? "class= active" : '' %>><a href="<%= backend_dashboard_index_path %>">Dashboard</a></li>
+        <% end %>
+      <% end %>
+      <% #cebolla %>
+      <% if current_user.role_company? || current_user.role_admin? %>
+        <li <%= params['controller'] == 'backend/informations' ? "class= active" : '' %>><a href="<%= backend_informations_path %>"><%=t('layouts.backend.information_request')%></a></li>
+
+      <% end %>
+
+      <% unless current_user.role_admin? %>
+        <% unless current_user.role_professional? %>
+          <li <%= params['controller'] == 'backend/visitors' ? "class= active" : '' %>><a href="<%= backend_visitors_path %>"><%=t('layouts.backend.visitors')%></a></li>
+        <% end %>
+        <li <%= params['controller'] == 'backend/favorites' ? "class= active" : '' %>><a href="<%= backend_favorites_path(kind: 'catalogs') %>"><%=t('layouts.backend.favorites')%></a></li>
+      <% end %>
+      <li <%= params['controller'] == 'backend/searches' ? "class= active" : '' %>><a href="<%= backend_searches_path %>"><%=t('layouts.backend.searches')%></a></li>
+      <% if current_user.role_company? ||current_user.role_admin? %>
+      <li <%= params['controller'] == 'backend/products' ? "class= active" : '' %>><a href="<%= backend_products_path %>"><%=t('layouts.backend.product_management')%></a></li>
+      <li <%= params['controller'] == 'backend/catalogs' ? "class= active" : '' %>><a href="<%= backend_catalogs_path %>"><%=t('layouts.backend.catalog_management')%></a></li>
+      <li <%= params['controller'] == 'backend/posts' ? "class= active" : '' %>><a href="<%= backend_posts_path %>"><%=t('layouts.backend.press_release')%></a></li>
+      <% end %>
+      <%#= cebolla %>
+
+      <% if current_user.role_admin? %>
+       <li <%= params['controller'] == 'backend/carousels' ? "class= active" : '' %>><a href="<%= backend_carousels_path%>"><%=t('layouts.backend.carousels')%></a></li>
+       <li <%= (params['controller'] == 'backend/users' && params['action'] == 'index') ? "class= active" : '' %>><a href="<%= backend_users_path%>"><%= t('m.professionals_listing') %></a></li>
+       <li <%= (params['controller'] == 'backend/users' && params['action'] == 'index_companies') ? "class= active" : '' %>><a href="<%= index_companies_backend_users_path%>"><%= t('m.companies_listing') %></a></li>
+       <li <%= (params['controller'] == 'backend/users' && params['action'] == 'all_payments') ? "class= active" : '' %>><a href="<%= all_payments_backend_users_path %>"><%= t('m.payments_listing') %></a></li>
+       <%end%>
+      <li <%= (params['controller'] == 'backend/users' && params['action'] == 'edit') ? "class= active" : '' %>><a href="<%= edit_backend_user_path(current_user) %>"><%=t('layouts.backend.my_account')%></a></li>
+
+    </ul>
+  </nav>
+</header><!-- .sidebar -->
+
+  <section class="content">
+
+    <div class="content_top">
+
+
+      <div class="dropdown">
+        <a class="dropdown_link" href="#">
+
+        <span class="value">
+          <% if current_user.role_professional? %>
+          <%= current_user.name.to_s %>
+          <% end %>
+          <% if current_user.role_company? %>
+          <%= current_user.name  + " - " + current_user.company_name.to_s %>
+          <% end %>
+          <% if current_user.role_admin? %>
+          <%= t('layouts.backend.admin')+ current_user.email.to_s %>
+          <% end %>
+        </span>
+
+        </a>
+        <div class="dropdown_content">
+          <ul>
+            <li><%= link_to(t('layouts.backend.logout'), destroy_user_session_path, method: :delete) %></li>
+            <li><%= link_to(t('layouts.backend.my_account'), edit_backend_user_path(current_user)) %></li>
+          </ul>
+        </div>
+      </div><!-- .dropdown -->
+      <% unless current_user.role_admin? || current_user.role_company? %>
+          <a class="button_secondary" href="<%= edit_backend_user_path(current_user, upgrade: 1) %>">Actualiza a empresa</a>
+      <% end %>
+    </div><!-- .content_top -->
+
+    <%= gflash %>
+
+
+    <%= yield %>
+
+  </section><!-- .content -->
+</main>
+</body>
+</html>

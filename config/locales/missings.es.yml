@@ -1,0 +1,87 @@
+es:
+  m:
+    placeholder_search: 'Buscar por empresa, catálogo o producto'
+    access_to_companies: 'Acceso a empresas'
+    results_for: 'Resultados para '
+    categories: 'Categorías'
+    products: 'Productos'
+    companies: 'Empresas'
+    catalogs: 'Catálogos'
+    posts: 'Noticias'
+    see_all: 'Ver todo'
+    manufacturer: 'Fabricante:'
+    back: 'Atrás'
+    language: 'Idioma'
+    remove_pdf: 'Eliminar PDF'
+    download: 'Descargar'
+    remove_catalog: 'BORRAR CATALOGO'
+    cant_be_undone: 'Esta acción no se puede deshacer.'
+    remove: 'Eliminar'
+    picture_company: 'Foto de empresa (1440x220px)'
+    professionals_listing: 'Listado de profesionales'
+    companies_listing: 'Listado de empresas'
+    payments_listing: 'Listado de pagos'
+    company: 'Empresa'
+    validated_catalog: 'Validado por Catalog Industry'
+    actual_plan: 'Plan actual'
+    premium: 'Premium'
+    till: 'hasta'
+    basic_plan_info: 'Información de plan básico'
+    upgrade_to_premium: 'Actualizar a plan Premium'
+    payments_history: 'Histórico de pagos'
+    change_card: 'Cambiar tarjeta'
+    disable_premium: 'Deshabilitar plan Premium'
+    cookies1: 'Este sitio web utiliza cookies para asegurar una mejor experienca de usuario.'
+    cookies_ok: 'Entendido'
+    cookies_learn: 'Saber más'
+    catalog_favorite: 'El catalogo es uno de tus favoritos'
+    catalog_no_favorite: 'El catalogo ya NO es uno de tus favoritos'
+    contact_sent: 'Petición de contacto enviada'
+    product_favorite: 'El producto es uno de tus favoritos'
+    product_no_favorite: 'El producto ya NO es uno de tus favoritos'
+    saved_search: 'Búsqueda guardada'
+    info_sent: 'Petición de información enviada'
+    company_favorite: 'La empresa es una de tus favoritos'
+    company_no_favorite: 'La empresa ya NO es una de tus favoritos'
+    newsletter_subscribed: 'Te has suscrito a la newsletter'
+    deleted_catalog: 'Catálogo eliminado'
+    deleted_product: 'Producto eliminado'
+    deleted_new: 'Noticia eliminado'
+    updated_catalog: 'Catálogo actualizado'
+    updated_product: 'Producto actualizado'
+    updated_new: 'Noticia actualizado'
+    created_ok: 'Creado correctamente'
+    review_info: 'Revise la información aportada'
+    removed_info: 'Datos eliminados'
+    plan_changed: 'Plan cambiado'
+    error_in_card: 'Error en los datos de la tarjeta / Tarjeta rechazada'
+    updated_data: 'Datos actualizados'
+    password_changed: 'Password actualizada'
+    password_not_changed: 'Password actual errónea. No se ha cambiado'
+    your_search: 'Escriba su búsqueda'
+    recieve_new_link_mail: 'Recibirá en su buzón un enlace para cambiar la contraseña'
+    company_name: 'Nombre de la empresa'
+    recaptcha: 'Por favor, marque la casilla "No soy un robot"'
+    delete_search: 'Borrar la búsqueda'
+    categories_like: 'Sector favorito'
+    data_not_found: 'No hay datos'
+    password_8_chars: 'Las passwords han de tener al menos 8 caracteres. No se ha cambiado la contraseña'
+
+    pay1: Se le cobrará € 99,99 EUR mensuales (más impuestos) hasta que decida darse de baja o cancelar sus plan.
+    pay2: ¿Puedo cancelar mi plan?
+    pay3: Sí, puede darse de baja o cancelar su suscripción cuando lo desee.
+    pay4: Tarjeta actual
+    pay5: Nombre
+    pay6: No hay tarjeta asignada
+    pay7: Información de su tarjeta
+    pay8: Número de tarjeta
+    pay9: Fecha caducidad
+    pay10: Código seguridad
+    pay11: Campos obligatorios
+    pay12: Resumen de compra
+    pay13: Couta mes
+    pay14: I.V.A.( 21 % )
+    pay15: Total mes
+    pay16: Empieza tu suscripción PREMIUM
+    pay17: Nueva tarjeta
+    pay18: Cancelar

@@ -1,0 +1,119 @@
+<nav class="breadcrumb">
+  <ul>
+    <li><a href="<%= root_path %>"><%=t('categories.start')%></a></li>
+    <li><a href="<%= categories_path %>"><%=t('categories.categories')%></a></li>
+    <li class="current"><%= @category.name %></li>
+  </ul>
+</nav>
+<div class="subheader">
+<style>
+.subheader {
+  background: url("<%= @category.picture.url %>") no-repeat top center;
+  background-size: cover;
+  padding-top: 40px;
+  padding-bottom: 30px;
+  margin-bottom: 15px;
+  /* .subheader_text */
+}
+</style>
+  <div class="container">
+    <h2 class="title_L"><%= @category.name %></h2>
+
+  </div>
+</div>
+<main id="main">
+  <div class="container">
+
+
+    <section class="links">
+      <ul>
+        <%@category.children.sort {|a,b| a.name <=> b.name}.each do |children| %>
+        <li><a href="<%= subcategory_categories_path(@category.friendly_id, children.friendly_id) %>"><%= children.name %></a></li>
+        <% end %>
+
+      </ul>
+    </section><!-- .links -->
+
+
+    <section class="products products-featured align-left">
+
+      <h3 class="title_L"><%=t('categories.last_catalogs')%>
+        <% if @category.all_catalogs[0..3].present? %>
+          <a href="<%= category_catalogs_categories_path(@category) %>"><%=t('categories.see_all')%></a>
+        <% end %>
+      </h3>
+
+      <% if @category.all_catalogs[0..3].present? %>
+        <div class="products_grid">
+
+          <% @category.all_catalogs.order(created_at: :desc)[0..3].each do |catalog| %>
+            <%= render partial: 'shared/catalog', :locals => {:catalog => catalog} %>
+          <% end %>
+
+
+        </div><!-- .products_grid -->
+      <% else %>
+        <%= t('m.data_not_found') %>
+      <% end %>
+
+    </section><!-- .products products-featured -->
+
+ </div><!-- .container -->
+
+ <section class="companies companies-secundary">
+   <div class="container">
+
+     <h3 class="title_L"> <%= t('categories.last_companies') %>
+      <% if @category.all_companies[0..5].present? %>
+        <a href="<%= category_companies_categories_path(@category) %>"><%=t('categories.see_all')%></a>
+      <% end %>
+    </h3>
+
+    <% if @category.all_companies[0..5].present? %>
+     <ul class="companies_logos">
+        <% @category.all_companies[0..5].each do |company| %>
+       <li><a href="<%= user_path(company) %>" rel="nofollow"><img src="<%= company.company_picture.url %>" alt=""><%#= company.company_name %></a></li>
+       <!-- Note: if not link, span -->
+       <% end %>
+     </ul><!-- .companies_logos -->
+     <% else %>
+      <%= t('m.data_not_found') %>
+     <% end %>
+   </div>
+ </section><!-- .companies companies-secundary -->
+
+ <div class="container">
+
+    <div class="products products-catalogs">
+
+
+      <h3 class="title_L"><%=t('categories.last_products')%>
+        <% if @category.all_products[0..3].present? %>
+          <a href="<%= category_products_categories_path(@category) %>"><%=t('categories.see_all')%></a>
+        <% end %>
+      </h3>
+      <% if @category.all_products[0..3].present? %>
+      <div class="products_grid">
+        <% @category.all_products[0..3].each do |product| %>
+        <div class="products_item product">
+          <figure class="product_media">
+            <a href="<%= product_path(product) %>"><img src="<%= product.first_picture %>" alt=""></a>
+            <!-- <span><img src="images/content/product-9.jpg" alt=""></span> -->
+          </figure>
+          <div class="product_info">
+            <h4 class="product_name"><a href="<%= product_path(product) %>"><%= product.name %> </a></h4>
+            <p class="product_company"><a href="#"><%= product.user.present? ? product.user.company_name : 'No company' %></a></p>
+            <p class="product_description"><%= truncate(product.description.to_s, :length => 100, :separator => ' ')  %></p>
+          </div>
+        </div><!-- .products_item product -->
+        <% end %>
+
+      </div><!-- .products_grid -->
+      <% else %>
+      <%= t('m.data_not_found') %>
+      <% end %>
+
+    </div><!-- .products products-catalogs -->
+
+  </div><!-- .container -->
+</main>

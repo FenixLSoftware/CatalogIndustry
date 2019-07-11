@@ -1,0 +1,166 @@
+
+
+<%#= javascript_include_tag('jquery-1.11.0.min') %>
+<%= javascript_include_tag('jquery.mousewheel.min') %>
+<%= javascript_include_tag('three.min') %>
+<%= javascript_include_tag('jquery.onebook3d-2.33') %>
+
+
+<% if session[:event_contact] == 'OK' %>
+
+  <script>
+  gtag('event', 'conversion', {'send_to': 'AW-984000230/1RrFCMCR_4QBEObNmtUD'});
+  </script>
+
+  <% session[:event_contact] == '' %>
+<% end %>
+
+<nav class="breadcrumb">
+  <ul>
+    <li><a href="<%= root_path %>"><%=t('catalogs.show.start')%></a></li>
+    <li><a href="<%= catalogs_path %>"><%=t('catalogs.show.catalogs')%></a></li>
+    <li class="current"><%= @catalog.name %></li>
+  </ul>
+
+</nav>
+
+<main id="main">
+  <div class="container">
+
+      <h2 class="title_L"><%= @catalog.name %></h2>
+
+
+
+    <section class="content">
+
+      <div class="product_details">
+        <figure class="product_media">
+
+
+            <span><a href="<%= view_online_catalog_path(@catalog) %>"><img src="<%= @catalog.first_page_picture.url %>" alt=""></a></span>
+
+        </figure><!-- .product_media -->
+        <div class="product_links">
+          <!-- <span class="item">Idioma: Español</span> -->
+          <!-- <a class="item" href="#">Idioma: Español</a> -->
+          <div class="group">
+
+              <a href="<%= get_pdf_catalog_path(@catalog) %>"><%=t('catalogs.show.download')%> <span class="fa fa-download" aria-hidden="true"></span></a>
+
+
+            <a href="<%= view_online_catalog_path(@catalog) %>"><%= t('catalogs.show.view_online') %> <span class="fa fa-external-link" aria-hidden="true"></span></a>
+          </div>
+        </div><!-- .product_links -->
+      </div>
+
+      <br>
+      <div class="product_details">
+
+        <div class="product_links">
+
+          <!-- <a class="item" href="#">Idioma: Español</a> -->
+
+
+          <% if (@catalog.translations.map(&:pdf).uniq - [nil]).size > 1 %>
+            <div class="group">
+              <% @catalog.translations.each do |translation|  %>
+                <% if translation.pdf.present? %>
+                  <a href="<%= view_online_catalog_path(@catalog, version: translation.locale.to_s) %>"><%= t('m.language') %> <%= translation.locale.to_s.upcase %> <span class="fa fa-external-link" aria-hidden="true"></span></a>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div><!-- .product_links -->
+      </div><!-- .product_details -->
+
+      <% @catalog.categories.each do |category| %>
+        <ul class="product_category">
+          <li><a href="<%= category_path(category.parent) %>"><%= category.parent.name %></a></li>
+          <li><a href="<%= category_path(category) %>"><%= category.name %></a><li>
+        </ul>
+      <% end %>
+
+      <div class="product_about">
+        <p class="title_S"><%=t('catalogs.show.description')%></p>
+
+            <% unless @catalog.description.nil?  %>
+                <p><%= @catalog.description.html_safe %></p>
+                <%end%>
+
+      </div><!-- .product_about -->
+      <% if @catalog.user.present?  %>
+      <div class="box products products-related">
+
+        <p class="title_S"><%=t('catalogs.show.product_company')%><a href="<%= menu_product_user_path(@catalog.user) %>"><%=t('catalogs.show.see_all')%></a></p>
+
+        <div class="products_grid">
+          <% @catalog.user.products[0..2].each do |product| %>
+            <div class="products_item product">
+              <figure class="product_media">
+                <a href="<%= product_path(product) %>"><img src="<%= product.first_picture %>" alt=""></a>
+                <!-- <span><img src="images/content/product-10.jpg" alt=""></span> -->
+              </figure>
+              <div class="product_info">
+                <h4 class="product_name"><a href="<%= product_path(product) %>"><%= product.name %></a></h4>
+                <p class="product_company"><a href="<%= user_path(@catalog.user) %>"><%= @catalog.user.company_name %></a></p>
+                <p class="product_description">
+                <% unless product.description.nil?  %>
+                <%= truncate(strip_tags(product.description).to_s, :length => 100, :separator => ' ')  %>
+                <%end%>
+              </p>
+              </div>
+            </div><!-- .products_item product -->
+          <% end %>
+
+
+        </div><!-- .products_grid -->
+
+      </div><!-- .box products products-related -->
+      <% end %>
+
+      <% if @catalog.user.present?  %>
+      <div class="box products products-catalogs">
+
+        <p class="title_S"><%=t('catalogs.show.catalogs_of_the_company')%> <a href="<%= menu_catalog_user_path(@catalog.user) %>"><%=t('catalogs.show.see_all')%></a></p>
+
+        <div class="products_grid">
+          <% @catalog.user.catalogs.shuffle[0..3].each do |catalog| %>
+          <div class="products_item product">
+            <figure class="product_media">
+              <a href="<%= catalog_path(catalog) %>"><img src="<%= catalog.first_page_picture.url %>" alt=""></a>
+              <!-- <span><img src="images/content/product-7.jpg" alt=""></span> -->
+            </figure>
+            <div class="product_info">
+              <h4 class="product_name"><a href="<%= catalog_path(catalog) %>"><%= catalog.name %></a></h4>
+              <p class="product_company"><a href="<%= user_path(@catalog.user) %>"><%= catalog.user.company_name %></a></p>
+              <p class="product_description">
+              <% unless catalog.description.nil?  %>
+                <%= truncate(strip_tags(catalog.description).to_s, :length => 100, :separator => ' ')  %>
+                <%end%>
+              </p>
+            </div>
+          </div><!-- .products_item product -->
+          <% end %>
+
+        </div><!-- .products_grid -->
+
+      </div><!-- .box products products-catalogs -->
+      <% end %>
+    </section><!-- .content -->
+<BR>
+    <aside class="sidebar">
+
+      <%= render partial: 'shared/maker', :locals => {:object => @catalog} %>
+
+
+      <%= render partial: '/shared/like_catalog' %>
+
+      <%= render partial: 'shared/contact_info' , :locals => {:object => @catalog.user, :item => 'c', :item_id => @catalog.id} %>
+
+    </aside><!-- .sidebar -->
+
+  </div><!-- .container -->
+</main>
+
+
+

@@ -1,0 +1,26 @@
+<div class="content_box">
+
+    <h2 class="content_title"><%=t('backend.informations.show.information_request')%></h2>
+
+    <div class="request">
+      <p class="align-right"><%= @information.created_at.strftime("%d/%m/%Y") %></p>
+      <p><span><%=t('backend.informations.show.full_name')%></span> <%= @information.name.to_s %> </p>
+      <p><span><%=t('backend.informations.show.company')%></span> <%= @information.company.to_s %>  </p>
+      <p><span><%=t('backend.informations.show.mail')%></span> <%= @information.email.to_s %> </p>
+      <p><span><%=t('backend.informations.show.contact_phone')%></span> <%= @information.phone.to_s %></p>
+      <p><span><%=t('backend.informations.show.city')%>:</span> <%= @information.city.to_s %></p>
+      <p><span><%=t('backend.informations.show.country')%></span> <%= @information.country.to_s %> </p>
+      <p><span><%=t('backend.informations.show.commentary')%></span> <%= @information.comment.to_s %></p>
+    </div><!-- .request -->
+
+    <div class="content_actions">
+
+      <a class="button" href="javascript:history.back()"><%=t('backend.informations.show.return')%></a>
+<%= link_to 'ELIMINAR',backend_information_path(@information), class: "button pull-right", method: :delete, data: { confirm: t('backend.informations.show.delete_record') } %>
+
+
+
+
+    </div><!-- .content_actions -->
+
+  </div>

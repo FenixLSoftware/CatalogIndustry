@@ -1,0 +1,85 @@
+
+<nav class="breadcrumb">
+  <ul>
+    <li><a href="<%= root_path %>"><%=t('users.menu_new.start')%></a></li>
+    <li><a href="<%= users_path %>"><%=t('users.menu_new.companies')%></a></li>
+    <li class="current"><%= @company.company_name %></li>
+  </ul>
+</nav>
+
+<main id="main">
+  <div class="container">
+
+    <section class="content">
+
+      <div class="tabs">
+        <nav class="tabs_menu">
+          <ul>
+            <li><a href="<%= user_path(@company) %>"><%=t('users.menu_new.about_company')%></a></li>
+            <li><a href="<%= menu_catalog_user_path(@company) %>"><%=t('users.menu_new.catalogs')%></a></li>
+            <li><a href="<%= menu_product_user_path(@company) %>"><%=t('users.menu_new.products')%></a></li>
+            <li class="active"><a href="<%= menu_new_user_path(@company) %>"><%=t('users.menu_new.news')%></a></li>
+          </ul>
+        </nav><!-- .tabs_menu -->
+
+        <div class="tabs_content">
+
+
+
+        </div><!-- .tabs_content -->
+
+        <div class="tabs_content">
+
+
+
+        </div><!-- .tabs_content -->
+
+        <div class="tabs_content ">
+
+
+
+        </div><!-- .tabs_content -->
+
+        <div class="tabs_content active">
+
+          <div class="box">
+
+            <section class="posts posts-related">
+
+              <h2 class="title_S"><%=t('users.menu_new.news')%></h2>
+
+              <div class="posts_grid">
+                <% @news.each do |post| %>
+                <%= render partial: 'shared/post2' , :locals => {:post => post} %>
+
+                <% end %>
+
+
+
+
+              </div>
+
+              <div class="pagination">
+                <%#= will_paginate @news %>
+              </div>
+
+            </section><!-- .posts -->
+
+          </div><!-- .box -->
+
+        </div><!-- .tabs_content -->
+
+      </div><!-- .tabs -->
+
+    </section><!-- .content -->
+
+    <aside class="sidebar">
+
+      <%= render partial: '/shared/like_company' %>
+
+      <%= render partial: 'shared/contact_info' , :locals => {:object => @company, :item => 'e', :item_id => 0} %>
+
+    </aside><!-- .sidebar -->
+
+  </div><!-- .container -->
+</main>

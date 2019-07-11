@@ -1,0 +1,87 @@
+﻿fr:
+  m:
+    placeholder_search: 'Recherche par entreprise, catégorie ou produit'
+    access_to_companies: 'Accès aux entreprises'
+    results_for: 'Résultats pour'
+    categories: 'Catégories'
+    products: 'Produits'
+    companies: 'Entreprises'
+    catalogs: 'Catalogues'
+    posts: 'Actualités'
+    see_all: 'Voir tout'
+    manufacturer: 'Fabricant :'
+    back: 'Retour'
+    language: 'Langue'
+    remove_pdf: 'Supprimer PDF'
+    download: 'Télécharger'
+    remove_catalog: 'SUPPRIMER CATALOGUE'
+    cant_be_undone: 'Cette action ne peut pas être annulée.'
+    remove: 'Effacer'
+    picture_company: 'Image de l’entreprise (1440x220 px)'
+    professionals_listing: 'Listing de professionnels'
+    companies_listing: 'Listing d’entreprises'
+    payments_listing: 'Listings des paiements'
+    company: 'Entreprise'
+    validated_catalog: 'Valable pour CatalogIndustry'
+    actual_plan: 'Plan actuel'
+    premium: 'Premium'
+    till: 'jusqu’à'
+    basic_plan_info: 'Information sur le plan de base'
+    upgrade_to_premium: 'Mettre à jour le plan Premium'
+    payments_history: 'Historique des paiements'
+    change_card: 'Changer de carte'
+    disable_premium: 'Désactiver le plan Premium'
+    cookies1: 'Ce site web utilise des cookies pour garantir une meilleure expérience de l’utilisateur.'
+    cookies_ok: 'Rejeter'
+    cookies_learn: 'Savoir plus'
+    catalog_favorite: 'Catalog est un favori'
+    catalog_no_favorite: 'Catalog N’EST PAS dans vos favoris'
+    contact_sent: 'Demande de contact envoyé'
+    product_favorite: 'Le produit est dans vos favoris'
+    product_no_favorite: 'Le produit N’EST PAS dans vos favoris'
+    saved_search: 'Votre recherche a été enregistrée'
+    info_sent: 'Demande d’information envoyée'
+    company_favorite: 'L’entreprise est dans vos favoris'
+    company_no_favorite: 'L’entreprise NE fait PAS partie de vos favoris'
+    newsletter_subscribed: 'Vous vous êtes souscrit à la newsletter'
+    deleted_catalog: 'Catalogue supprimé'
+    deleted_product: 'Produit supprimé'
+    deleted_new: 'Message supprimé'
+    updated_catalog: 'Catalogue mis à jour'
+    updated_product: 'Produit mis à jour'
+    updated_new: 'Message mis à jour'
+    created_ok: 'Créé correctement'
+    review_info: 'Réviser l’information fournie'
+    removed_info: 'Information supprimée'
+    plan_changed: 'Plan changé'
+    error_in_card: 'Erreur dans les données de la carte / Carte refusée'
+    updated_data: 'Données mises à jour'
+    password_changed: 'Mot de passe changé'
+    password_not_changed: 'Mot de passe incorrect. Il n’a pas été modifié'
+    your_search: 'Écrivez les termes de la recherche'
+    recieve_new_link_mail: 'Vous recevrez un lien dans votre boîte aux lettres pour changer le mot de passe'
+    company_name: 'Nom de l’entreprise'
+    recaptcha: 'Veuillez cocher "Je ne suis pas un robot" avant d’envoyer l’information.'
+    delete_search: 'Supprimer cette recherche'
+    categories_like: 'Secteur favori'
+    data_not_found: 'Aucune information n’a été trouvée'
+    password_8_chars: 'Les mots de passe doivent avoir au moins 8 caractères. Le mot de passe n’a pas été changé'
+
+    pay1: Le montant s’élève à 99,99 EUR par mois (HT) jusqu’à ce que vous décidiez de modifier ou annuler le plan.
+    pay2: Puis-je réduire mon plan ?
+    pay3: Oui, vous pouvez réduire de niveau ou annuler votre souscription lorsque vous le souhaitez.
+    pay4: Carte actuelle
+    pay5: Nom
+    pay6: Sans carte attribuée
+    pay7: Information de la carte de crédit
+    pay8: Numéro de carte de crédit ou débit
+    pay9: Date d’expiration
+    pay10: Code de sécurité
+    pay11: Champs obligatoires
+    pay12: Résumé de l’achat
+    pay13: Contribution mensuelle
+    pay14: TVA (21%)
+    pay15: Total
+    pay16: Souscrivez-vous au plan PREMIUM
+    pay17: Nouvelle carte
+    pay18: Annuler

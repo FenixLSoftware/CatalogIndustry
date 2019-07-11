@@ -1,0 +1,29 @@
+es:
+  gflash:
+    #
+    # These are the translations for the different titles.
+    #
+    titles:
+      notice: "Aviso"
+      success: "Correcto"
+      warning: "Aviso"
+      error: "Error"
+      progress: "Progreso"
+    #
+    # Add default gflash messages:
+    # defaults:
+    #   success: "This is a notification"
+    #   error: "Something went wrong"
+    #   create:
+    #     success: "Successfully created!"
+    #     error: "Something went wrong. Please take a look at the form to see what went wrong."
+    #
+    # Add gflash messages for controller actions:
+    # products:
+    #   create:
+    #     notice: "This is a notification"
+    #     error: "Something went wrong"
+    #
+    # Inside controller:
+    # gflash :notice, :error
+    #

@@ -1,0 +1,29 @@
+<nav class="breadcrumb">
+  <ul>
+    <li><a href="<%= root_path %>"><%=t('posts.index.start')%></a></li>
+    <li class="current"><%=t('posts.index.posts')%></li>
+  </ul>
+</nav>
+<main id="main">
+
+  <div class="container">
+
+    <section class="posts">
+
+      <div class="posts_home-grid">
+        <% @posts.each do  |p| %>
+          <%= render partial: 'shared/post' , :locals => {:p => p} %>
+
+        <% end %>
+
+      </div>
+
+      <div class="pagination">
+         <%= will_paginate @posts %>
+      </div>
+
+    </section><!-- .posts -->
+
+  </div>
+
+</main>

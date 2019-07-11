@@ -1,0 +1,109 @@
+<% @company = @user %>
+
+      <%= form_for [:backend, @user], :html => { :multipart => true, class: 'form_validate' } do |f| %>
+
+    <div id="card" class="content_box">
+      <p class="content_title"><strong><%= t('m.pay16') %></strong></p>
+
+
+      <p class="content_title"><%= t('m.pay1') %></p>
+
+      <p class="content_title"><strong><%= t('m.pay2') %></strong></p>
+
+      <p class="content_title"><%= t('m.pay3') %></p>
+
+
+
+
+        <h2 class="content_title">
+         <%= t('m.pay4') %>:
+          <% if @user.error_card.present? %>
+              <strong>ERROR: <%= @user.error_card.to_s %></strong>
+          <% else %>
+            <% if @user.stripe_last4.present? %>
+              <%= @user.stripe_brand.to_s + " (xxxx-xxxx-xxxx-" + @user.stripe_last4.to_s + ") exp: " + @user.stripe_month + "/" + @user.stripe_year + " " + t('m.pay5')  +": " + @user.stripe_name_card %>
+            <% else %>
+              <%= t('m.pay6') %>
+            <% end %>
+          <% end %>
+        </h2>
+
+
+          <p class="content_title"><strong><%= t('m.pay7') %></strong></p>
+          <div class="row card-icons">
+            <%= image_tag 'backend/visa.png' %>
+            <%= image_tag 'backend/mastercard.png' %>
+            <%= image_tag 'backend/american.png' %>
+            <%= image_tag 'backend/discover.png' %>
+
+          </div>
+
+          <div class="row1" >
+              <div id="formulario">
+                  <div class="field2 max-w row1">
+                    <label for="name"><%= t('m.pay8') %>*</label>
+                    <%=f.text_field :card_number, :maxlength => 17, class: 'required' %>
+                  </div>
+
+                  <div class="field2 max-w row1">
+
+                    <label for="name"><%= t('m.pay9') %>*</label>
+                    <%=f.text_field :card_month, :maxlength => 2, placeholder: 'MM', class: 'required' %>
+                    <%=f.text_field :card_year, :maxlength => 4, placeholder: 'YYYY', class: 'required' %>
+
+                  </div>
+
+                  <div class="field2">
+                    <label for="name"><%= t('m.pay10') %>*</label>
+                    <%=f.text_field :card_cvv, :maxlength => 4, class: 'required' %>
+
+                  </div>
+
+                  <div class="field2 max-w row1">
+                    <label for="name"><%= t('backend.users.form.card_name') %>*</label>
+                    <%=f.text_field :card_name, :maxlength => 250, class: 'required' %>
+
+                  </div>
+              </div>
+
+        <!--EN EL CASO DE COMPRA-->
+
+              <div id="resumen">
+                    <div  id="p1">
+                      <p class="content_title"><strong><%= t('m.pay12') %></strong></p>
+                    </div>
+                    <div class="row noborder">
+                      <p  class="content_title"><%= t('m.pay13') %></p><p class="content_title" id="cifra"><strong>99.99 EUR</strong></p>
+                    </div>
+                    <div class="row noborder">
+                      <p  class="content_title"><%= t('m.pay14') %></p><p class="content_title" id="cifra"><strong>21.00 EUR</strong></p>
+                    </div>
+                     <hr >
+                    <div class="row noborder">
+                      <p  class="content_title"><%= t('m.pay15') %></p><p class="content_title" id="cifra"><strong>120.99 EUR</strong></p>
+                    </div>
+                     <hr >
+                    <div class="bottom noborder">
+
+                         <a href="https://stripe.com" id="logo_stripe" target="_blank" class="bottom"><img style="height:40px;" src="<%= asset_path('backend/powered-by-stripe.png') %>"></a>
+                    </div>
+              </div>
+           <!--EN EL CASO DE COMPRA-->
+
+          </div>
+          <hr class="content_title">
+
+          <p class="content_title sm">* <%= t('m.pay11') %></p>
+        <div class="actions">
+            <%= button_tag(type: "submit", class: "button") do %>
+            <% if @user.stripe_last4.present? %>
+                                <%= t('m.pay17') %>
+                                <% else %>
+                                <%= 'Pagar' %>
+                                <% end %>
+                            <% end %>
+                            <%= link_to t('m.pay18'), edit_backend_user_path(current_user),  class: "button" %>
+        </div>
+
+     </div>
+      <% end %>

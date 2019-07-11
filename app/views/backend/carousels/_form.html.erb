@@ -1,0 +1,142 @@
+<% if @limit_reached %>
+
+
+
+
+
+  <div class="content_actions content_actions-top">
+
+      <a class="button button pull-right" href="#"><%=t('backend.carousels.form.update_account')%></a>
+
+  </div>
+
+  <div class="content_actions content_actions-top">
+
+      <a class="button button pull-right" href="#"><%=t('backend.carousels.form.back_to_carousels')%></a>
+
+  </div>
+<% else %>
+
+
+
+  <%= form_for [:backend, @carousel],html: {class: 'form_validate'}  do |f| %>
+
+
+    <div class="content_box">
+
+      <h2 class="content_title"><%=t('backend.carousels.form.info')%></h2>
+
+
+      <div class="tabs">
+      <nav class="tabs_menu">
+        <ul>
+          <li class="active"><a href="#"><%=t('backend.carousels.form.english')%></a></li>
+          <li class=""><a href="#"><%=t('backend.carousels.form.spanish')%></a></li>
+          <li class=""><a href="#"><%=t('backend.carousels.form.french')%></a></li>
+          <li class=""><a href="#"><%=t('backend.carousels.form.german')%></a></li>
+          <li class=""><a href="#"><%=t('backend.carousels.form.italian')%></a></li>
+          <li class=""><a href="#"><%=t('backend.carousels.form.chinese')%></a></li>
+
+        </ul>
+      </nav>
+
+      <% I18n.available_locales.each_with_index do |locale, idx| %>
+        <%= f.globalize_fields_for locale do |g| %>
+
+          <div class="tabs_content <%= idx == 0 ? 'active' : '' %>" >
+            <br><br>
+            <div class="field">
+              <label for="name"><%=t('backend.carousels.form.title')%></label>
+              <%=g.text_field :title, :maxlength => 80 , class: 'lang_name name-group' %>
+
+            </div>
+              <div class="field">
+              <label for="description"><%=t('backend.carousels.form.description')%></label>
+              <%=g.text_field :description, :maxlength => 60, class: 'lang_desc desc-group' %>
+            </div>
+          </div><!-- .tabs_content -->
+
+        <% end %>
+      <% end %>
+            <div class="field">
+              <label for="url">URL : </label>
+              <%=f.text_field :url,:maxlength => 60, class: 'lang_url url-group' %>
+
+            </div>
+            <div class="field">
+              <label for="description"><%=t('backend.carousels.form.upload_image')%></label>
+              <%=f.file_field :picture %>
+            </div>
+    </div>
+
+    </div><!-- .content_box -->
+
+
+<% unless @carousel.title.nil? %>
+    <div class="content_box">
+        <!-- # categorias actuales del catalogo -->
+
+        <h2 class="content_title"> <%=t('backend.carousels.form.uploaded_image')%></h2>
+         <div class="field">
+            <a ><%= image_tag(@carousel.picture)%></a>
+       </div>
+
+    </div>
+<%end%>
+
+
+    <div class="content_box">
+      <h2 class="content_title"><%=t('backend.carousels.form.publication')%></h2>
+
+      <div class="field">
+        <label for="published"><%=t('backend.carousels.form.publication_status')%></label>
+        <div class="select">
+          <%= f.select :published, [[t('backend.carousels.form.active'), true], [t('backend.carousels.form.inactive'), false]] %>
+        </div>
+      </div>
+
+      <div class="actions">
+
+        <%= button_tag(type: "submit", class: "button") do %>
+                            <%=t('backend.carousels.form.save')%>
+                        <% end %>
+      </div>
+
+    </div><!-- .content_box -->
+
+  <% end %>
+ <% end %>
+
+<script>
+  $(document).ready(function() {
+      $('.js-example-basic-multiple').select2({
+        closeOnSelect: false
+      });
+      // evita que select2 baja al top al seleccionar elemento
+      var scrollTop;
+      $('.js-example-basic-multiple').on("select2:selecting", function( event ){
+          var $pr = $( '#'+event.params.args.data._resultId ).parent();
+          scrollTop = $pr.prop('scrollTop');
+      });
+      $('.js-example-basic-multiple').on("select2:select", function( event ){
+          var $pr = $( '#'+event.params.data._resultId ).parent();
+          $pr.prop('scrollTop', scrollTop );
+      });
+
+
+  });
+
+  $('.tabs_menu a').on('click', function(e){
+    e.preventDefault();
+    var $tabs = $(this).closest('.tabs'),
+        $li = $(this).closest('li'),
+        index = $li.index();
+
+    $tabs.find('.tabs_menu li').removeClass('active');
+    $li.addClass('active');
+    $tabs.find('.tabs_content').removeClass('active');
+    $tabs.find('.tabs_content').eq(index).addClass('active');
+  });
+
+
+</script>

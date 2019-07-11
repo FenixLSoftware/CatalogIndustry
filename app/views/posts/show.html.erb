@@ -1,0 +1,49 @@
+<main id="main">
+  <div class="container">
+
+    <article class="post post-expand">
+
+      <figure class="post_media">
+        <span><img src="<%= @post.picture.url %>" alt=""></span>
+      </figure><!-- .post_media -->
+
+      <div class="post_data">
+        <div class="post_data_author"><%=t('posts.show.published_by')%><a href="<%= user_path(@post.user) %>"><%= @post.user.company_name.to_s %></a></div>
+        <div class="post_data_day"><%= @post.created_at.strftime('%b %d, %Y') %></div>
+        <!-- <div class="post_data_tags">Innovación / Bañeras / ??? / ???</div> -->
+      </div><!-- .post_data -->
+
+      <h2 class="title_L"><%= @post.title %></h2>
+
+      <div class="post_share">
+
+         <%= social_share_button_tag(@post.title, :url => "http://cataloginsdustry.com/#{@post.slug}") %>
+
+        <div class="post_share_more">
+          <a class="post_share_visited" href="#"><%=Impression.where(impressionable_id: @post.id).count%>  <%=t('posts.show.views')%></a>
+
+          <% if current_user.present? %>
+            <% if current_user.likes?(@post) %>
+              <a class="post_share_liked" href="<%= like_post_path(@post) %>"><span class="fa fa-thumbs-down" aria-hidden="true"></span> Ya no me gusta</a>
+            <% else %>
+              <a class="post_share_liked" href="<%= like_post_path(@post) %>"><span class="fa fa-thumbs-up" aria-hidden="true"></span> Me gusta</a>
+            <% end %>
+          <% else %>
+            <a class="post_share_liked openLogin" href="#"><span class="fa fa-thumbs-up" aria-hidden="true"></span> Me gusta</a>
+          <% end %>
+
+        </div>
+      </div><!-- .post_share -->
+
+      <div class="post_content">
+
+        <%= @post.description.html_safe %>
+
+      </div><!-- .post_content -->
+
+
+
+    </article><!-- .post post-expand -->
+
+  </div><!-- .container -->
+</main>

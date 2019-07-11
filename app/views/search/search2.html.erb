@@ -1,0 +1,110 @@
+<nav class="breadcrumb">
+  <ul>
+    <li><a href="<%= root_path %>"><%=t('catalogs.index.start')%></a></li>
+    <li class="current"><%=t('catalogs.index.all_catalogs')%></li>
+
+  </ul>
+</nav>
+
+
+
+<div class="container">
+
+
+
+    <section class="products products-catalogs">
+
+      <h2 class="title_L">Encontrados <%= @search.total_count %> resultados para ' <%= params[:term].to_s %> '</h2>
+
+
+
+
+      <div class="products_grid">
+
+        <% @search.each do |search_result| %>
+
+          <% if search_result.class.name == 'Catalog' %>
+            <% catalog = search_result %>
+            <div class="products_item product">
+              <figure class="product_media">
+                <a href="<%= catalog_path(catalog) %>"><img src="<%= catalog.first_page_picture.url %>" alt=""></a>
+                <!-- <span><img src="images/content/product-5.jpg" alt=""></span> -->
+              </figure>
+              <div class="product_info">
+                <h4 class="product_name"><a href="<%= catalog_path(catalog) %>"><%= catalog.name %></a></h4>
+                <p class="product_company"><a href="#"><%= catalog.user.present? ? catalog.user.company_name : 'No company'%></a></p>
+                <p class="product_description">
+                 <% unless catalog.description.nil?  %>
+                <%= truncate(strip_tags(catalog.description).to_s, :length => 100, :separator => ' ')  %>
+                <%end%>
+                </p>
+
+              </div>
+            </div><!-- .products_item product -->
+          <% end %>
+
+          <% if search_result.class.name == 'Product' %>
+            <% product = search_result %>
+            <div class="products_item product">
+              <figure class="product_media">
+                <a href="<%= product_path(product) %>"><img src="<%= product.first_picture %>" alt=""></a>
+                <!-- <span><img src="images/content/product-5.jpg" alt=""></span> -->
+              </figure>
+              <div class="product_info">
+                <h4 class="product_name"><a href="<%= product_path(product) %>"><%= product.name %></a></h4>
+                <p class="product_company"><a href="#"><%= product.user.present? ? product.user.company_name : 'No company'%></a></p>
+                <p class="product_description">
+                <% unless product.description.nil?  %>
+                <%= truncate(strip_tags(product.description).to_s, :length => 100, :separator => ' ')  %> 
+                <%end%>
+                </p>
+
+              </div>
+            </div><!-- .products_item product -->
+          <% end %>
+          <% if search_result.class.name == 'User' %>
+            <% user = search_result %>
+            <div class="products_item product">
+              <figure class="product_media">
+                <a href="<%= user_path(user) %>"><img src="<%= user.company_picture.url %>" alt=""></a>
+                <!-- <span><img src="images/content/product-5.jpg" alt=""></span> -->
+              </figure>
+              <div class="product_info">
+                <h4 class="product_name"><a href="<%= user_path(user) %>"><%= user.company_name %></a></h4>
+
+                <p class="product_description"><%= truncate(user.description.to_s, :length => 100, :separator => ' ')  %></p>
+              </div>
+            </div><!-- .products_item product -->
+          <% end %>
+
+          <% if search_result.class.name == 'Post' %>
+            <% post = search_result %>
+            <div class="products_item product">
+              <figure class="product_media">
+                <a href="<%= post_path(post) %>"><img src="<%= post.picture.url if post.picture.present? %>" alt=""></a>
+                <!-- <span><img src="images/content/product-5.jpg" alt=""></span> -->
+              </figure>
+              <div class="product_info">
+                <h4 class="product_name"><a href="<%= post_path(post) %>"><%= post.title %></a></h4>
+                <p class="product_company"><a href="#"><%= post.user.present? ? post.user.company_name.to_s : 'No company'%></a></p>
+                <p class="product_description">
+                <% unless post.description.nil?  %>
+                <%= truncate(strip_tags(post.description).to_s, :length => 100, :separator => ' ')  %> 
+                <%end%>
+                </p>
+              </div>
+            </div><!-- .products_item product -->
+          <% end %>
+
+
+        <% end %>
+
+      </div><!-- .products_grid -->
+
+      <div class="pagination">
+        <%= will_paginate @search %>
+      </div>
+
+    </section><!-- .products products-catalogs -->
+
+  </div>

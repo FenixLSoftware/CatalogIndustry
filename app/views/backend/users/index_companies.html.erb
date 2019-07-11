@@ -1,0 +1,59 @@
+<div class="content_box">
+
+
+  <div class="content_actions content_actions-top">
+    <%= form_tag index_companies_backend_users_path, {:class => 'searcher'} do %>
+      <%= text_field_tag :search, (params[:search].present? ? params[:search] : nil), placeholder: t('backend.users.index.search_users')%>
+      <%= (hidden_field_tag "active", params[:active]) if params[:active].present? %>
+      <button type="submit"><span class="icon_search">Buscar</span></button>
+    <% end %>
+   <br> <br> <br> <br> <br>
+
+  </div><!-- .content_actions content_actions-top -->
+    <h2 class="content_title"><%=t('backend.users.index.list_users')%></h2>
+
+
+    <table>
+      <tbody><tr>
+        <th><%=t('backend.users.index.entry_date')%></th>
+        <th><%=t('backend.users.index.name')%></th>
+        <th><%=t('backend.users.index.company')%></th>
+        <th style="text-align:center" ><%=t('backend.users.index.actions')%></th>
+
+
+      </tr>
+
+      <% @users_all.each do |user| %>
+      <tr>
+        <td><%= user.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+        <td><%= user.name %>
+          <% unless user.validated? %>
+          <br><span>**Pending</span>
+
+          <% end %>
+
+        <%if user.company_name==""%>
+        <td> -- </td>
+        <%else%>
+        <td><%=user.company_name%></td>
+        <%end%>
+        <td>
+          <%= link_to t('backend.users.index.edit'), edit_backend_user_path(user), class: "button" %>
+
+
+        </td>
+
+      </tr>
+      <% end %>
+
+    </tbody>
+    </table>
+     <div class="content_actions">
+
+      <%= will_paginate @users_all %>
+
+    </div><!-- .content_actions -->
+
+
+
+  </div>

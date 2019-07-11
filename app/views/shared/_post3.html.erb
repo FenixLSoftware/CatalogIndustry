@@ -1,0 +1,15 @@
+<article class="posts_item post">
+  <figure class="post_media">
+    <a href="<%= post_path(post) %>"><img src="<%= post.picture.url %>" alt=""></a>
+
+  </figure>
+  <div class="post_text">
+    <h4 class="post_title"><a href="<%= post_path(post) %>"><%= post.title %></a></h4>
+    <p class="post_category"><a href="#">??</a></p>
+     <p class="post_description">
+       <% unless post.description.nil?  %>
+          <%= truncate(strip_tags(post.description).to_s, :length => 100, :separator => ' ')  %> 
+      <%end%>
+      </p>
+  </div>
+</article><!-- .posts_item post -->

@@ -1,0 +1,48 @@
+
+<div class="content_box">
+
+
+
+    <h2 class="content_title"><%= t('m.payments_listing') %></h2>
+
+
+    <table>
+      <tbody><tr>
+        <th>Payment date</th>
+        <th>User</th>
+        <th>Used card</th>
+
+        <th>Amount</th>
+        <th>Status</th>
+
+
+
+      </tr>
+
+      <% @all_payments.each do |payment| %>
+      <tr>
+        <td><%= payment.created_at.strftime("%d/%m/%Y %H:%M") %><br>
+          <% begin %>
+          <%= JSON.parse(payment.response)['id'] %>
+          <% rescue %>
+          <% end %>
+        </td>
+        <td><%= payment.user.name.to_s + " * " + payment.user.company_name.to_s%></td>
+        <td><%= payment.card_info.to_s %></td>
+        <td><%= (payment.amount.to_i / 100).round(2) %> EUR</td>
+        <td><%= payment.success? ? 'OK' : ('Failed<br>' + payment.response.to_s) %></td>
+
+      </tr>
+      <% end %>
+
+    </tbody>
+    </table>
+     <div class="content_actions">
+
+      <%= will_paginate @all_payments %>
+
+    </div><!-- .content_actions -->
+
+
+
+  </div>

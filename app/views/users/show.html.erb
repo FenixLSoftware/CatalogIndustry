@@ -1,0 +1,156 @@
+
+<% if session[:event_contact] == 'OK' %>
+
+  <script>
+  gtag('event', 'conversion', {'send_to': 'AW-984000230/1RrFCMCR_4QBEObNmtUD'});
+  </script>
+
+  <% session[:event_contact] == '' %>
+<% end %>
+
+<% if params[:controller]=='users' && params[:action] == 'show' %>
+  <% if @company.role_company? && @company.logo.present? %>
+  <%# cebolla %>
+    <nav class="breadcrumb" style='margin-bottom: 120px;'>
+  <% else %>
+      <nav class="breadcrumb">
+  <% end %>
+<% else %>
+  <nav class="breadcrumb">
+<% end %>
+
+  <ul>
+    <li><a href="<%= root_path %>"><%=t('users.show.start')%></a></li>
+    <li><a href="<%= users_path %>"><%=t('users.show.companies')%></a></li>
+    <li class="current"><%= @company.company_name %></li>
+  </ul>
+</nav>
+
+<main id="main">
+  <div class="container">
+
+    <section class="content">
+
+      <div class="tabs">
+        <nav class="tabs_menu">
+          <ul>
+            <li class="active"><a href="<%= user_path(@company) %>"><%=t('users.show.about_company')%></a></li>
+            <li><a href="<%= menu_catalog_user_path(@company) %>"><%=t('users.show.catalogs')%></a></li>
+            <li><a href="<%= menu_product_user_path(@company) %>"><%=t('users.show.products')%></a></li>
+            <li><a href="<%= menu_new_user_path(@company) %>"><%=t('users.show.news')%></a></li>
+          </ul>
+        </nav><!-- .tabs_menu -->
+
+        <div class="tabs_content active">
+
+          <div class="maker maker-expand">
+            <figure class="maker_media">
+              <!-- <a href="#"><img src="images/companies/idecolor.png" alt="Logo de IdeColor"></a> -->
+              <span><img src="<%= @company.company_picture.url %>" alt="Logo de IdeColor"></span>
+            </figure>
+            <h2 class="maker_name"><a href="#"><%= @company.company_name %></a></h2>
+            <!-- <h3 class="maker_description">NCS para arquitectos y diseñadores ???</h3> -->
+            <ul class="maker_details">
+              <!-- <li><span class="icon_tag"></span> IdeColor. Ideas y Colores S.L.????</li> -->
+              <li><span class="icon_phone"></span> <a href="tel:<%= @company.phone %>"><%= @company.phone %></a></li>
+              <% if @company.website.present?%>
+                <li><span class="icon_web"></span> <a href="<%= @company.website.to_s %>" rel="nofollow" target="_blank"><%= @company.website.to_s %></a></li>
+              <% end %>
+              <li><span class="icon_pin"></span><a href="https://www.google.com/maps/search/<%= @company.company_name.to_s + " " + @company.address.to_s +  " " + @company.city.to_s %>" rel="nofollow" target="_blank"> <%= @company.address %>, <%= @company.postal %> <%= @company.city %> <%= @company.country %> </a> </li>
+            </ul>
+          </div><!-- .maker-expand -->
+
+          <div class="product_about">
+            <p class="title_S"><%=t('users.show.about_us')%></p>
+            <p><%= @company.description.to_s.html_safe %></p>
+
+          </div><!-- .product_about -->
+
+          <div class="box products products-catalogs">
+
+            <p class="title_S"><%=t('users.show.catalogs_of_the_company')%><a href="<%= menu_catalog_user_path(@company) %>"><%=t('users.show.see_all')%></a></p>
+            <% if @company.catalogs.visible_front.present? %>
+              <div class="products_grid">
+                <% @company.catalogs.visible_front.order(created_at: :desc)[0..3].each do |catalog| %>
+
+                  <%= render partial: 'shared/catalog', :locals => {:catalog => catalog} %>
+                <% end %>
+
+              </div><!-- .products_grid -->
+            <% else %>
+              <%= t('m.data_not_found') %>
+            <% end %>
+          </div><!-- .box products products-catalogs -->
+
+          <div class="box products products-related">
+
+            <p class="title_S"><%=t('users.show.company_products')%><a href="<%= menu_product_user_path(@company) %>"><%=t('users.show.see_all')%></a></p>
+            <% if @company.products.visible_front.present? %>
+            <div class="products_grid">
+
+
+              <% @company.products.visible_front.order(created_at: :desc)[0..2].each do |product| %>
+
+                <%= render partial: 'shared/product', :locals => {:catalog => product} %>
+              <% end %>
+
+
+            </div><!-- .products_grid -->
+            <% else %>
+              <%= t('m.data_not_found') %>
+            <% end %>
+          </div><!-- .box products products-related -->
+
+          <section class="box posts posts-related">
+
+            <p class="title_S"><%=t('users.show.news')%> <a href="<%= menu_new_user_path(@company) %>"><%=t('users.show.see_all')%></a></p>
+            <% if @company.posts.visible_front.present? %>
+            <div class="posts_grid">
+
+              <% @company.posts.visible_front.order(created_at: :desc)[0..2].each do |post| %>
+
+                <%= render partial: 'shared/post2', :locals => {:post => post} %>
+              <% end %>
+
+
+
+            </div>
+            <% else %>
+              <%= t('m.data_not_found') %>
+            <% end %>
+          </section><!-- .box posts -->
+
+        </div><!-- .tabs_content -->
+
+        <div class="tabs_content">
+
+
+
+        </div><!-- .tabs_content -->
+
+        <div class="tabs_content">
+
+
+
+        </div><!-- .tabs_content -->
+
+        <div class="tabs_content">
+
+
+
+        </div><!-- .tabs_content -->
+
+      </div><!-- .tabs -->
+
+    </section><!-- .content -->
+
+    <aside class="sidebar">
+
+      <%= render partial: '/shared/like_company' %>
+
+      <%= render partial: 'shared/contact_info' , :locals => {:object => @company, :item => 'e', :item_id => 0} %>
+
+    </aside><!-- .sidebar -->
+
+  </div><!-- .container -->
+</main>

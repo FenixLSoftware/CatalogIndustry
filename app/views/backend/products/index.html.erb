@@ -1,0 +1,65 @@
+
+
+  <div class="content_actions content_actions-top">
+    <%= form_tag search_backend_products_path, {:class => 'searcher'} do %>
+      <%= text_field_tag :search, (params[:search].present? ? params[:search] : nil), placeholder: t('backend.products.index.search') %>
+      <%= (hidden_field_tag "active", params[:active]) if params[:active].present? %>
+      <button type="submit"><span class="icon_search">Buscar</span></button>
+    <% end %>
+
+    <% if current_user.role_admin? %>
+        <a class="button button-big pull-right" href="<%= new_backend_product_path %>"><%=t('backend.product.index.new_product')%></a>
+    <% else %>
+      <% if current_user.validated %>
+        <% if current_user.role_professional? %>
+            <a class="button button-big pull-right" href="<%= edit_backend_user_path(current_user) %>">Actualiza perfil a empresa para subir productos</a>
+        <% else %>
+
+            <% if current_user.can_upload('p')%>
+              <a class="button button-big pull-right" href="<%= new_backend_product_path %>"><%=t('backend.product.index.new_product')%></a>
+            <% else %>
+              <a class="button button-big pull-right" href="<%= edit_backend_user_path(current_user, anchor: 'card') %>"><%='Necesitas plan Premium para subir' %></a>
+            <% end %>
+
+        <% end %>
+      <% else %>
+          <a class="button button-big pull-right" href="<%= edit_backend_user_path(current_user) %>"><%='Empresa pendiente de validación' %></a>
+      <% end %>
+
+    <% end %>
+  </div><!-- .content_actions content_actions-top -->
+
+  <div class="content_box">
+
+    <div class="tabs">
+      <nav class="tabs_menu">
+        <ul>
+          <li <%= params['active'].present? ? "" : "class= active"  %>><a href="<%= backend_products_path(search: params[:search]) %>"><%=t('backend.products.index.all')%></a></li>
+          <li <%= params['active']== '1' ? "class= active" : ""  %>><a href="<%= backend_products_path(active: '1', search: params[:search]) %>"><%=t('backend.products.index.active')%></a></li>
+          <li <%= params['active']== '0' ? "class= active" : ""  %>><a href="<%= backend_products_path(active: '0', search: params[:search]) %>"><%=t('backend.products.index.inactive')%></a></li>
+        </ul>
+      </nav>
+
+      <div class="tabs_content active">
+
+
+        <div class="products_grid">
+
+          <div class = "sort_paginate_ajax">
+
+            <%= render 'products' %>
+
+          </div>
+
+
+
+        </div><!-- .products_grid -->
+
+
+      </div><!-- .tabs_content -->
+
+
+
+    </div><!-- .tabs -->
+
+  </div><!-- .content_box -->

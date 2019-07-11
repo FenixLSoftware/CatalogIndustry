@@ -1,0 +1,57 @@
+
+<nav class="breadcrumb">
+  <ul>
+    <li><a href="<%= root_path %>"><%=t('users.index.start')%></a></li>
+    <li class="current"><%=t('users.index.all_companies')%></li>
+
+  </ul>
+</nav>
+
+<div class="subheader">
+  <div class="container">
+    <h2 class="title_L">Empresas</h2>
+  </div>
+</div>
+
+
+<div class="container">
+
+
+
+    <section class="companies">
+
+      <h2 class="title_L"><%=t('users.index.companies')%></h2>
+
+        <div class="filters">
+          <span class="filters_label"><%=t('users.index.order')%></span>
+          <div class="filters_group">
+            <a class="button <%= params[:sort]=='1' ? '' : 'active'%>" href="<%= url_for(:only_path => false, :overwrite_params=>nil) %>"><%=t('users.index.news')%></a>
+            <a class="button <%= params[:sort]=='1' ? 'active' : ''%>" href="<%= url_for(:only_path => false, :overwrite_params=>nil, sort: '1') %>">A-Z</a>
+          </div>
+        </div><!-- .filters -->
+
+
+
+      <div class="companies_grid">
+      <% @companies.each do |company| %>
+      <% cache [company, 'users', I18n.locale] do %>
+         <div class="companies_item">
+           <figure class="companies_logo">
+             <a href="<%= user_path(company) %>" >
+               <img src="<%= company.company_picture.url %>" alt="<%= company.company_name %>">
+             </a>
+           </figure>
+           <h3 class="companies_name"><a href="<%= user_path(company) %>"><%= company.company_name %></a></h3>
+         </div><!-- .companies_item -->
+        <% end %>
+      <% end %>
+
+     </div>
+
+      <div class="pagination">
+        <%= will_paginate @companies %>
+      </div>
+
+    </section><!-- .products products-catalogs -->
+
+  </div>

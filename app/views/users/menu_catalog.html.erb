@@ -1,0 +1,82 @@
+
+<nav class="breadcrumb">
+  <ul>
+    <li><a href="<%= root_path %>"><%=t('users.menu_catalog.start')%></a></li>
+    <li><a href="<%= users_path %>"><%=t('users.menu_catalog.companies')%></a></li>
+    <li class="current"><%= @company.company_name %></li>
+  </ul>
+</nav>
+
+<main id="main">
+  <div class="container">
+
+    <section class="content">
+
+      <div class="tabs">
+        <nav class="tabs_menu">
+          <ul>
+            <li><a href="<%= user_path(@company) %>"><%=t('users.menu_catalog.about_company')%></a></li>
+            <li class="active"><a href="<%= menu_catalog_user_path(@company) %>"><%=t('users.menu_catalog.catalogs')%></a></li>
+            <li><a href="<%= menu_product_user_path(@company) %>"><%=t('users.menu_catalog.products')%></a></li>
+            <li><a href="<%= menu_new_user_path(@company) %>"><%=t('users.menu_catalog.news')%></a></li>
+          </ul>
+        </nav><!-- .tabs_menu -->
+
+        <div class="tabs_content">
+
+
+        </div><!-- .tabs_content -->
+
+        <div class="tabs_content active">
+
+          <div class="box">
+
+            <section class="products products-catalogs">
+
+              <h2 class="title_S"><%=t('users.menu_catalog.company_catalogs')%></h2>
+
+              <div class="products_grid">
+
+                <% @catalogs.each do |catalog| %>
+
+                  <%= render partial: 'shared/catalog', :locals => {:catalog => catalog} %>
+                <% end %>
+
+              </div><!-- .products_grid -->
+
+              <div class="pagination">
+                <%#= will_paginate @catalogs %>
+              </div>
+
+            </section><!-- .products products-catalogs -->
+
+          </div><!-- .box -->
+
+        </div><!-- .tabs_content -->
+
+        <div class="tabs_content">
+
+
+
+        </div><!-- .tabs_content -->
+
+        <div class="tabs_content">
+
+
+
+        </div><!-- .tabs_content -->
+
+      </div><!-- .tabs -->
+
+    </section><!-- .content -->
+
+    <aside class="sidebar">
+
+      <%= render partial: '/shared/like_company' %>
+
+      <%= render partial: 'shared/contact_info' , :locals => {:object => @company, :item => 'e', :item_id => 0} %>
+
+    </aside><!-- .sidebar -->
+
+  </div><!-- .container -->
+</main>

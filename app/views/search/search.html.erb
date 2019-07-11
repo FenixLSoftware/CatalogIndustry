@@ -1,0 +1,134 @@
+<nav class="breadcrumb">
+  <ul>
+    <li><a href="<%= root_path %>">Inicio</a></li>
+    <li class="current">Buscar</li>
+  </ul>
+</nav>
+
+
+<main id="main">
+  <div class="container">
+
+    <h2 class="title_L"><%= t('m.results_for') %> "<%= @term %>":</h2>
+    <% if current_user.present? %>
+      <% unless Search.where(term: @term, user: current_user).present? %>
+        <%= link_to 'Guardar esta búsqueda', save_search_get_path(@term), class: 'button_secondary' %>
+      <% else %>
+        Ya guardaste esta búsqueda. <%= link_to 'Ver mis busquedas guardadas', backend_searches_path, class: 'button_secondary' %>
+      <% end %>
+    <% end %>
+
+
+    <section class="results_categories">
+      <h3 class="title_M"><%= t('m.categories') %> <!-- <a href="#">ver todo</a> --></h3>
+
+      <br>
+      <% if @categories.present? %>
+        <ul>
+          <%@categories.each do |category| %>
+            <% cache [category, 'search', I18n.locale] do %>
+            <li><a href="<%= category_path(category.parent) %>"><%= category.parent.name %></a> > <a href="<%= category_path(category) %>"><%= category.name %></a></li>
+            <% end %>
+          <% end %>
+        </ul>
+      <% else %>
+        <%= t('m.data_not_found') %>
+      <% end %>
+    </section>
+
+
+    <section class="results_products">
+      <h3 class="title_M"><%= t('m.catalogs') %>
+        <% if @catalogs.present? %>
+          <a href="<%= search_get_path(p: 'c', term: @term) %>"><%= t('m.see_all')%></a>
+        <% end %>
+      </h3>
+
+      <% if @catalogs.present? %>
+      <div class="products_grid">
+         <% @catalogs.each do |catalog| %>
+          <% cache [catalog, 'search', I18n.locale] do %>
+            <%= render partial: 'shared/catalog_land', :locals => {:catalog => catalog} %>
+            <% end %>
+         <% end %>
+
+       </div>
+       <% else %>
+          <%= t('m.data_not_found') %>
+       <% end %>
+    </section>
+
+
+
+    <section class="results_products">
+      <h3 class="title_M"><%= t('m.products') %>
+        <% if @products.present? %>
+          <a href="<%= search_get_path(p: 'p', term: @term) %>"><%= t('m.see_all')%></a>
+        <% end %>
+      </h3>
+
+
+      <% if @products.present? %>
+      <div class="products_grid">
+         <% @products.each do |catalog| %>
+         <% cache [catalog, 'search', I18n.locale] do %>
+          <%= render partial: 'shared/product_land', :locals => {:catalog => catalog} %>
+          <% end %>
+         <% end %>
+
+       </div>
+       <% else %>
+        <%= t('m.data_not_found') %>
+       <% end %>
+    </section>
+
+
+
+    <section class="results_companies">
+      <h3 class="title_M"><%= t('m.companies') %>
+        <% if @companies.present? %>
+          <a href="<%= search_get_path(p: 'e', term: @term) %>"><%= t('m.see_all')%></a>
+        <% end %>
+      </h3>
+
+      <% if @companies.present? %>
+      <div class="companies_grid">
+        <% @companies.each do |company| %>
+          <% cache [company, 'search', I18n.locale] do %>
+            <div class="companies_item-landscape">
+              <figure class="companies_logo">
+                <a href="<%= user_path(company) %>"><img src="<%= company.company_picture.url %>" alt=""></a>
+              </figure>
+              <h3 class="companies_name"><a href="<%= user_path(company) %>" rel="nofollow"><%= company.company_name %></a></h3>
+            </div><!-- .companies_item-landscape -->
+          <% end %>
+        <% end %>
+      </div>
+      <% else %>
+        <%= t('m.data_not_found') %>
+      <% end %>
+    </section>
+
+    <section class="results_posts">
+      <h3 class="title_M">Noticias
+        <% if @posts.present? %>
+          <a href="<%= search_get_path(p: 'n', term: @term) %>"><%= t('m.see_all')%></a>
+        <% end %>
+      </h3>
+
+      <br>
+      <% if @posts.present? %>
+
+      <ul>
+        <% @posts.each do |post| %>
+
+          <li><a href="<%= post_path(post) %>"><%= post.title %></a></li>
+        <% end %>
+      </ul>
+      <% else %>
+        <%= t('m.data_not_found') %>
+      <% end %>
+    </section>
+
+  </div><!-- .container -->
+</main>

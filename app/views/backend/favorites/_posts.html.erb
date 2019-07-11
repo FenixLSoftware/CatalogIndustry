@@ -1,0 +1,39 @@
+
+
+        <nav class="pagination">
+          <% unless params[:search].present? %>
+          <%= js_will_paginate @items_all %>
+          <% end %>
+        </nav><!-- .pagination -->
+
+          <% @items_all.each do |post| %>
+
+          <div class="products_item">
+
+            <figure class="product_media">
+              <% if post.published? %>
+                <span class="published"><%=t('backend.posts.index.published')%></span>
+              <% end %>
+
+              <a href="<%= post_path(post) %>"><%= image_tag(post.picture.url) %></a>
+              <!-- <span><img src="images/content/product-1.jpg" alt=""></span> -->
+            </figure>
+            <div class="product_info">
+              <% if current_user.role_admin? %>
+                <a href='<%= user_path(post.user) %>'><h2 class="product_name"><%= post.user.present? ? post.user.company_name : 'No company!'%></h2></a>
+                <br>
+              <% end %>
+              <h2 class="product_name"><a href="<%= post_path(post) %>"><%= post.title %></a></h2>
+              <p class="product_description"><%= truncate(strip_tags(post.description).to_s, :length => 100, :separator => ' ')  %></p>
+            </div>
+          </div><!-- .products_item -->
+
+         <% end %>
+
+        <nav class="pagination">
+          <% unless params[:search].present? %>
+          <%= js_will_paginate @items_all %>
+          <% end %>
+        </nav><!-- .pagination -->
+
+

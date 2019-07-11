@@ -1,0 +1,28 @@
+<div class="modal" id="mSearch">
+  <a class="closeModal" href="#"><%=t('layouts.frontend.close')%></a>
+
+    <%= form_tag(search_post_path, :method => :get) do %>
+
+      <div class="field">
+        <label class="screen-reader-text" for="searchbox"><%=t('layouts.frontend.search')%></label>
+        <input type="text" name="term" id="searchbox" placeholder="<%= t('m.your_search') %>">
+      </div><!-- .field -->
+
+    <% end %>
+
+</div>
+
+<script>
+$(document).ready(function(){
+    $( "#openSearch" ).on('click', function() {
+
+      setTimeout(
+        function()
+        {
+          //do something special
+          $( "#searchbox" ).focus();
+        }, 400);
+
+    });
+});
+</script>

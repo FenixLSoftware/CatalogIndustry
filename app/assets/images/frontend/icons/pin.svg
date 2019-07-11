@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="17px" viewBox="0 0 14 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.1 (43504) - http://www.bohemiancoding.com/sketch -->
+    <title>Icons/ic-pin</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Public-site" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Company-detail" transform="translate(-369.000000, -487.000000)">
+            <g id="Info" transform="translate(149.000000, 284.000000)">
+                <g id="location" transform="translate(215.000000, 199.000000)">
+                    <g id="Icons/ic-pin">
+                        <rect id="bounds" x="0" y="0" width="24" height="24"></rect>
+                        <g id="pin" stroke-width="1" fill-rule="evenodd" transform="translate(6.000000, 5.000000)" stroke="#DCE0E0" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6,8.68187744 C7.104,8.68187744 8,7.78646154 8,6.68318123 C8,5.57990091 7.104,4.68448501 6,4.68448501 C4.896,4.68448501 4,5.57990091 4,6.68318123 C4,7.78646154 4.896,8.68187744 6,8.68187744 Z" id="Stroke-178" stroke-width="2"></path>
+                            <path d="M12,6.68318123 C12,11.6799218 7,14.6779661 6,14.6779661 C5,14.6779661 0,11.6799218 0,6.68318123 C0,3.37234094 2.687,0.687092568 6,0.687092568 C9.313,0.687092568 12,3.37234094 12,6.68318123 Z" id="Stroke-179" stroke-width="2"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

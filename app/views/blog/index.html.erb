@@ -1,0 +1,48 @@
+<div id="blog">
+  <nav class="breadcrumb">
+    <ul>
+      <li><a href="#"><%= t('blog.blog.start') %></a></li>
+      <li class="current">Blog</li>
+    </ul>
+  </nav><!-- .breadcrumb -->
+
+
+  <div id="flexslider_hero" class="flexslider hero_flexslider">
+    <ul class="slides">
+      <% @posts.first(4).each do |post| %>
+          <li style="background-image: url('<%= asset_path (post.picture.url) %>');" class="carousel-item">
+            <div class="container">
+              <h2 class="hero_title"><a><%= post.title %></h2>
+
+              <a class="hero_button button_tertiary" href="<%= post_path(post) %>">Leer</a>
+            </div>
+          </li>
+      <% end %>
+    </ul>
+  </div><!-- .flexslider hero_flexslider -->
+
+
+  <main id="main">
+
+    <div class="container">
+
+      <section class="posts">
+
+        <div class="posts_home-grid">
+
+          <% @posts.each_with_index do |post, idx| %>
+              <%= render partial: 'shared/post3', :locals => {:post => post} %>
+          <% end %>
+
+          <div class="pagination">
+            <a class="pagination_more" href="#"><%= t('blog.blog.see_more') %></a>
+          </div>
+
+        </div>
+
+      </section><!-- .posts -->
+
+    </div>
+
+  </main>
+</div>

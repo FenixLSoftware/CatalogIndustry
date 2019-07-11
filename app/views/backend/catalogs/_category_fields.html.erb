@@ -1,0 +1,32 @@
+
+<div class='nested-fields'>
+  <div class="field">
+    <% if f.object.persisted? %>
+        <%= image_tag(f.object.picture.url) %>
+    <% else %>
+        <%= f.label :category %>
+        <div class="select">
+          <select class="required" name="categories[]" multiple="multiple">
+            <% Category.includes(:translations).all.roots.each do |root_cat| %>
+                <% if root_cat.children.present? %>
+                    <optgroup label="<%= root_cat.name %>">
+                      <% root_cat.children.each do |children| %>
+                          <% if actual_categories.size == 0 %>
+                              <option value="<%= children.id %>"> <%= children.name %> </option>
+                          <% else %>
+                              <option value="<%= children.id %>" <%= actual_categories.include?(children.id) ? 'selected' : '' %>> <%= children.name %> </option>
+                          <% end %>
+                      <% end %>
+                    </optgroup>
+                <% end %>
+            <% end %>
+          </select>
+        </div>
+    <% end %>
+
+    <%= link_to_remove_association 'Remove Category', f, class: 'button' %>
+  </div>
+
+
+</div>
+

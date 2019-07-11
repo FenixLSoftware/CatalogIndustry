@@ -1,0 +1,249 @@
+<% if @limit_reached %>
+
+
+    <div class="alert">
+      <p><%= t('backend.posts.form.alert1') %></p>
+    </div>
+
+
+    <div class="content_actions content_actions-top">
+
+      <a class="button button pull-right" href="#"><%= t('backend.posts.form.update_account') %></a>
+
+    </div>
+
+    <div class="content_actions content_actions-top">
+
+      <a class="button button pull-right" href="#"><%= t('backend.posts.form.back_to_posts') %></a>
+
+    </div>
+<% else %>
+
+    <% if @post.errors.any? %>
+        <div class="alert">
+
+
+          <% @post.errors.full_messages.each do |msg| %>
+              <p><%= msg %></p>
+          <% end %>
+        </div>
+    <% end %>
+
+    <%= form_for [:backend, @post], html: {class: 'form_validate'} do |f| %>
+
+
+        <div class="content_box">
+
+
+          <h2 class="content_title"><%= t('backend.posts.form.info') %></h2>
+
+
+          <div class="tabs">
+            <nav class="tabs_menu">
+              <ul>
+                <li class="active"><a href="#"><%=t('backend.carousels.form.english')%></a></li>
+                <li class=""><a href="#"><%=t('backend.carousels.form.spanish')%></a></li>
+                <li class=""><a href="#"><%=t('backend.carousels.form.french')%></a></li>
+                <li class=""><a href="#"><%=t('backend.carousels.form.german')%></a></li>
+                <li class=""><a href="#"><%=t('backend.carousels.form.italian')%></a></li>
+                <li class=""><a href="#"><%=t('backend.carousels.form.chinese')%></a></li>
+
+              </ul>
+            </nav>
+
+            <% I18n.available_locales.each_with_index do |locale, idx| %>
+                <%= f.globalize_fields_for locale do |g| %>
+
+
+
+                    <div class="tabs_content <%= idx == 0 ? 'active' : '' %>">
+                      <br><br>
+
+                      <% if current_user.role_admin? %>
+                        <div class="field">
+                        <%= t('m.company') %>: <%= f.object.user.company_name if f.object.user.present? %>
+                        </div>
+                      <% end %>
+
+
+                      <div class="field">
+                        <label for="name"><%= t('backend.posts.form.title') %></label>
+                        <%= g.text_field :title, maxlength: 250, class: 'lang_name name-group', data: {group_message: I18n.t('validations.require_one_lang')} %>
+
+                      </div>
+
+                      <div class="field">
+                        <label for="description"><%= t('backend.posts.form.description') %></label>
+                        <%= g.cktext_area :description, class: 'lang_desc desc-group', data: {group_message: I18n.t('validations.require_one_lang')} %>
+
+                      </div>
+
+
+                    </div><!-- .tabs_content -->
+
+                <% end %>
+            <% end %>
+
+          </div>
+
+        </div><!-- .content_box -->
+
+
+        <div class="content_box">
+          <h2 class="content_title"><%= t('backend.posts.form.outstanding_image') %> </h2>
+          <div class="field">
+            <label for="empty"></label>
+            <% if f.object.picture.present? %>
+                <%= image_tag(f.object.picture.url, width: 250) %>
+                <br><%= link_to remove_picture_backend_post_path(@post), class: 'button', method: :delete, data: { confirm: "Are you sure?" } do %>
+                                  Eliminar Foto
+                <% end %>
+            <% end %>
+
+            <div>
+              <%= f.file_field :picture, class: f.object.picture.blank? ? 'required' : '', onchange: "validateFiles(this);",
+    data: { max_file_size: 20.megabytes} %>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="content_box">
+          <h2 class="content_title"><%= t('backend.posts.form.publication') %></h2>
+
+          <div class="field">
+            <label for="published"><%= t('backend.posts.form.publication_status') %></label>
+            <div class="select">
+              <%= f.select :published, [[t('backend.posts.form.active'), true], [t('backend.posts.form.inactive'), false]] %>
+            </div>
+          </div>
+
+          <% if current_user.role_admin? %>
+              <div class="field">
+                <label for="published"><%= t('m.validated_catalog') %></label>
+                <div class="select">
+                  <%= f.select :validated, [[t('backend.catalog.form.active'), true], [t('backend.catalog.form.inactive'), false]] %>
+                </div>
+              </div>
+          <% end %>
+
+          <div class="actions">
+
+            <%= button_tag(type: "submit", class: "button") do %>
+                <%= t('backend.posts.form.save') %>
+            <% end %>
+            <a href='<%= backend_posts_path %>' class='button'>Cancel</a>
+          </div>
+
+        </div><!-- .content_box -->
+
+        <% if f.object.persisted? %>
+          <div class="content_box">
+            <h2 class="content_title">ELIMINAR NOTICIA</h2>
+
+            Esta acción no se puede deshacer.
+
+
+
+            <div class="actions">
+
+
+              <%= link_to "ELIMINAR", backend_post_path(f.object), class: 'button', data: { confirm: "Are you sure?" }, method: :delete %>
+
+            </div>
+
+          </div><!-- .content_box -->
+        <% end %>
+
+    <% end %>
+<% end %>
+
+<script>
+
+
+
+    function validateFiles(inputFile) {
+      var maxExceededMessage = "This file exceeds the maximum allowed file size (20 MB)";
+      var extErrorMessage = "Only document file with extension: .jpg, .jpeg, or .png is allowed";
+      var allowedExtension = ["jpg", "jpeg", "png"];
+
+      var extName;
+      var maxFileSize = $(inputFile).data('max-file-size');
+      var sizeExceeded = false;
+      var extError = false;
+
+      $.each(inputFile.files, function() {
+        if (this.size && maxFileSize && this.size > parseInt(maxFileSize)) {sizeExceeded=true;};
+        extName = this.name.split('.').pop();
+        if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
+      });
+      if (sizeExceeded) {
+        //window.alert(maxExceededMessage);
+        <%= add_gritter("Only document file with extension: .jpg, .jpeg, or .png is allowed", :title => "Extension error", :image => :error) %>
+        $(inputFile).val('');
+      };
+
+      if (extError) {
+        //window.alert(extErrorMessage);
+        <%= add_gritter("This file exceeds the maximum allowed file size (20 MB)", :title => "File size error", :image => :error) %>
+        $(inputFile).val('');
+      };
+    }
+
+
+    $(document).ready(function () {
+        $('.js-example-basic-multiple').select2({
+            closeOnSelect: false
+        });
+        // evita que select2 baja al top al seleccionar elemento
+        var scrollTop;
+        $('.js-example-basic-multiple').on("select2:selecting", function (event) {
+            var $pr = $('#' + event.params.args.data._resultId).parent();
+            scrollTop = $pr.prop('scrollTop');
+        });
+        $('.js-example-basic-multiple').on("select2:select", function (event) {
+            var $pr = $('#' + event.params.data._resultId).parent();
+            $pr.prop('scrollTop', scrollTop);
+        });
+
+        $('.delete_picture').on('click', function (e) {
+            e.preventDefault();
+            $('#post_picture').addClass('required');
+            $('#post_picture').removeClass('hidden');
+            $(this).hide();
+            $(this).siblings('img').hide();
+            // TODO: Call to remove pdf
+        });
+
+        for (var i in CKEDITOR.instances) {
+          CKEDITOR.instances[i].on('change', function()
+          {
+            CKEDITOR.instances.post_translations_attributes_1_description.updateElement();
+            CKEDITOR.instances.post_translations_attributes_2_description.updateElement();
+            CKEDITOR.instances.post_translations_attributes_3_description.updateElement();
+            CKEDITOR.instances.post_translations_attributes_4_description.updateElement();
+            CKEDITOR.instances.post_translations_attributes_5_description.updateElement();
+            CKEDITOR.instances.post_translations_attributes_6_description.updateElement();
+
+          });
+        }
+
+    });
+
+    $('.tabs_menu a').on('click', function (e) {
+        e.preventDefault();
+        var $tabs = $(this).closest('.tabs'),
+            $li = $(this).closest('li'),
+            index = $li.index();
+
+        $tabs.find('.tabs_menu li').removeClass('active');
+        $li.addClass('active');
+        $tabs.find('.tabs_content').removeClass('active');
+        $tabs.find('.tabs_content').eq(index).addClass('active');
+    });
+
+
+</script>

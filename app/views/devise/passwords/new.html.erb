@@ -1,0 +1,26 @@
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post, id: 'remember_password', class: 'form_validate'}) do |f| %>
+
+    <%= devise_error_messages! %>
+    <div class="register_form">
+      <p>
+      <h2><%= t('devise.passwords.new.forgot') %></h2></p>
+
+      <div class="row">
+
+        <div class="field">
+          <%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, class: 'required' %>
+        </div>
+      </div>
+
+
+      <div class="actions">
+        <%= f.submit t('devise.passwords.new.send_me'), class: 'button_secondary button-expand' %>
+      </div>
+      <%= render "devise/shared/links" %>
+    </div><!-- .register_form -->
+
+
+
+<% end %>
+

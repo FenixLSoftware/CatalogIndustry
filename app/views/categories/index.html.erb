@@ -1,0 +1,63 @@
+<nav class="breadcrumb">
+  <ul>
+    <li><a href="<%= root_path %>"><%=t('categories.start')%></a></li>
+    <li class="current"><%=t('categories.categories')%></li>
+  </ul>
+</nav><!-- .breadcrumb -->
+
+
+<main id="main">
+  <div class="container">
+
+    <section class="categories">
+
+      <h2 class="title_L"><%=t('categories.categories')%></h2>
+
+      <div class="categories_grid categories_grid-masonry" id="categories_grid-masonry">
+        <% @categories.each do |category| %>
+          <% cache [category, 'categories', I18n.locale] do %>
+            <%# category = Category.find(category[0]) %>
+            <% if category.children.present? %>
+                <div class="categories_block">
+                  <div class="categories_image">
+                    <a href="<%= category_path(category) %>"><%= image_tag(category.picture_url) %></a>
+                  </div>
+                  <a href="<%= category_path(category) %>"><h3 class="categories_title"><%= category.name %></h3></a>
+                  <ul>
+                    <% category.children.sort { | a, b | a.name <=> b.name }.each do |children| %>
+                        <li><a href="<%= subcategory_categories_path(category, children) %>"><%= children.name.to_s %></a></li>
+                    <% end %>
+                  </ul>
+                </div><!-- .categories_block -->
+            <% end %>
+          <% end %>
+        <% end %>
+
+      </div><!-- .categories_grid -->
+
+    </section><!-- .categories -->
+
+  </div><!-- .container -->
+</main>
+
+<script>
+$(function(){
+    $('#categories_grid-masonry').masonry({
+            itemSelector: '.categories_block',
+            columnWidth: '.categories_block',
+            percentPosition: true
+          });
+});
+</script>
+
+<script>
+
+
+$(window).on('load', function() {
+ // code here
+  $('#categories_grid-masonry').masonry({
+    itemSelector : '.categories_block'
+  });
+});
+
+</script>

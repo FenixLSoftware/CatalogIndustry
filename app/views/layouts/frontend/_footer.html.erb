@@ -1,0 +1,45 @@
+<footer id="footer" class="footer">
+  <div class="container">
+    <div class="footer_list">
+      <h4 class="footer_title">CatalogIndustry</h4>
+      <ul>
+        <!-- <li><%= link_to t('layouts.frontend.about_us'), about_us_static_index_path %></li> -->
+        <li><%= link_to t('layouts.frontend.contact'), contact_static_index_path%></li>
+        <li><%= link_to 'Blog', blog_path%></li>
+        <li><%= link_to t('layouts.frontend.privacy_policy'), privacy_policy_static_index_path%></li>
+        <li><%= link_to t('layouts.frontend.legal_notice'), legal_notice_static_index_path%></li>
+      </ul>
+    </div><!-- .footer_list -->
+    <div class="footer_list">
+      <h4 class="footer_title"><%=t('layouts.frontend.home.business_service')%></h4>
+      <ul>
+        <% unless current_user.present? %>
+          <li><a href="<%= publish_static_index_path %>"><%=t('layouts.frontend.companies_access')%></a></li>
+        <% end %>
+        <!-- <li><a href="<%= faq_static_index_path %>"><%=t('layouts.frontend.frequent_questions')%></a></li> -->
+        <li><a class="important" href="<%=publish_static_index_path%>"><%=t('layouts.frontend.publish_your_company')%></a></li>
+        <li><a class="important" href="<%= users_path %>"><%=t('layouts.frontend.company_directory')%></a></li>
+      </ul>
+    </div><!-- .footer_list -->
+    <div class="footer_newsletter">
+      <h4 class="footer_title"><%=t('layouts.frontend.newsletter')%></h4>
+      <%= form_tag send_to_newsletter_users_path do %>
+
+        <%= text_field_tag :email, nil, placeholder: t('m.access_to_companies') %>
+        <button class="button" type="submit"><%=t('layouts.frontend.subscribe')%></button>
+      <% end %>
+      <nav class="footer_social">
+        <ul>
+          <li><a href="https://www.facebook.com/IndustrialCatalogs" target="_blank"><span class="fa fa-facebook" aria-hidden="true"></span> <span class="screen-reader-text">Facebook</span></a></li>
+          <li><a href="https://twitter.com/CatalogIndustry" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span> <span class="screen-reader-text">Twitter</span></a></li>
+          <li><a href="https://www.linkedin.com/company/catalog-industry/" target="_blank"><span class="fa fa-linkedin" aria-hidden="true"></span> <span class="screen-reader-text">Linkedin</span></a></li>
+          <li><a href="https://www.pinterest.es/catalogindustry/" target="_blank"><span class="fa fa-pinterest" aria-hidden="true"></span> <span class="screen-reader-text">Pinterest</span></a></li>
+          <li><a href="https://www.flickr.com/photos/catalogindustry" target="_blank"><span class="fa fa-flickr" aria-hidden="true"></span> <span class="screen-reader-text">Flickr</span></a></li>
+          <li><a href="http://catalogindustry.tumblr.com/" target="_blank"><span class="fa fa-tumblr" aria-hidden="true"></span> <span class="screen-reader-text">Tumblr</span></a></li>
+          <li><a href="https://plus.google.com/+Catalogindustry" target="_blank"><span class="fa fa-google-plus" aria-hidden="true"></span> <span class="screen-reader-text">Google</span></a></li>
+          <li><a href="https://www.youtube.com/user/CatalogIndustry" target="_blank"><span class="fa fa-youtube-play" aria-hidden="true"></span> <span class="screen-reader-text">Youtube</span></a></li>
+        </ul>
+      </nav><!-- .footer_social -->
+    </div><!-- .footer_newsletter -->
+  </div>
+</footer>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 14 9" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>Icons/ic-flags/france</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons/ic-flags/france" fill-rule="nonzero">
+            <g>
+                <path d="M4.66667578,8.99252679 L0.241390625,8.99252679 C0.108089844,8.99252679 0,8.88664286 0,8.7560625 L0,0.24375 C0,0.113169643 0.108089844,0.00728571429 0.241390625,0.00728571429 L4.66667578,0.00728571429 L4.66667578,8.99252679 Z" id="Shape" fill="#41479B"></path>
+                <rect id="Rectangle-path" fill="#F5F5F5" x="4.66675781" y="0.00741964286" width="4.66675781" height="8.98526786"></rect>
+                <path d="M13.7586094,8.99252679 L9.33332422,8.99252679 L9.33332422,0.0073125 L13.7586094,0.0073125 C13.8919102,0.0073125 14,0.113196429 14,0.243776786 L14,8.75608929 C14,8.88669643 13.8919102,8.99252679 13.7586094,8.99252679 Z" id="Shape" fill="#FF4B55"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,14 @@
+<nav class="breadcrumb">
+  <ul>
+    <li><a href="<%= root_path %>"><%=t('static.start')%></a></li>
+    <li class="current"><%=t('static.privacy_policy')%></li>
+  </ul>
+</nav>
+
+
+<main id="main" class="contact">
+  <div class="container">
+    <%= render :partial => 'es_privacypolicy' if I18n.locale == :es %>
+    <%= render :partial => 'en_privacypolicy' if I18n.locale == :en %>
+  </div><!-- .container -->
+</main>

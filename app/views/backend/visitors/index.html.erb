@@ -1,0 +1,97 @@
+<div class="content_box">
+    <h2 class="content_title"><%=t('backend.visitors.index.list')%></h2>
+
+    <% if @visits.present? %>
+
+    <table>
+      <tbody><tr>
+        <th><%=t('backend.visitors.index.date')%></th>
+        <th><%=t('backend.visitors.index.visitor')%></th>
+        <th><%=t('backend.visitors.index.type')%></th>
+        <th><%=t('backend.visitors.index.element')%></th>
+
+      </tr>
+      <% @visits.each do |visit| %>
+
+        <% @user = User.find_by(id: visit.user_id) %>
+        <% if @user.present? %>
+        <tr>
+          <td><%= visit.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+          <% if visit.user_id.nil?  %>
+            <td>--</td>
+          <% else %>
+            <td>
+              <% user = User.find_by(id: visit.user_id) %>
+               <% if user.provider == "linkedin"  && user.linkedin_url.present? %>
+               <%user_linkedin = user.name.to_s + " - " + user.company_name.to_s %>
+                <%= link_to(user_linkedin, user.linkedin_url,target: :_blank) %>
+                  <%else%>
+                  <%= user.name.to_s + " - " + user.company_name.to_s %>
+                  <%end%>
+              </td>
+          <% end %>
+
+
+          <% if visit.impressionable_type.to_s == 'Catalog' %>
+          <% catalog = Catalog.find_by(id: visit.impressionable_id) %>
+          <td>
+            <%=t('backend.visitors.index.catalog')%>
+          </td>
+          <td>
+          <%= link_to(catalog.name, catalog_path(catalog)) %>
+          </td>
+          <% end %>
+
+          <% if visit.impressionable_type.to_s == 'Product' %>
+          <% product = Product.find_by(id: visit.impressionable_id) %>
+          <td>
+            <%=t('backend.visitors.index.product')%>
+          </td>
+          <td>
+          <%= link_to(product.name, product_path(product)) %>
+          </td>
+          <% end %>
+
+          <% if visit.impressionable_type.to_s == 'Post' %>
+          <% post = Post.find_by(id: visit.impressionable_id) %>
+          <td>
+            <%=t('backend.visitors.index.post')%>
+          </td>
+          <td>
+          <%= link_to(post.title, post_path(post)) %>
+          </td>
+          <% end %>
+
+          <% if visit.impressionable_type.to_s == 'User' %>
+          <% user = User.find_by(id: visit.impressionable_id) %>
+          <td>
+            <%=t('backend.visitors.index.profile')%>
+          </td>
+          <td>
+          <%= link_to(user.company_name, user_path(user)) %>
+          </td>
+          <% end %>
+
+
+          <td></td>
+        </tr>
+        <% end %>
+      <% end %>
+
+    </tbody>
+    </table>
+
+    <div class="content_actions">
+
+      <%= will_paginate @visits %>
+
+    </div><!-- .content_actions -->
+
+
+    <% else %>
+      <%=t('backend.visitors.index.no_request')%>
+    <% end %>
+
+
+
+  </div>

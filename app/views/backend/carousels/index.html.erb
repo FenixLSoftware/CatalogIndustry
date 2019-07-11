@@ -1,0 +1,48 @@
+
+
+  <div class="content_actions content_actions-top">
+    <%= form_tag search_backend_carousels_path, {:class => 'searcher'} do %>
+      <%= text_field_tag :search, (params[:search].present? ? params[:search] : nil), placeholder: t('backend.carousels.index.search') %>
+      <%= (hidden_field_tag "active", params[:active]) if params[:active].present? %>
+      <button type="submit"><span class="icon_search">Search</span></button>
+    <% end %>
+
+
+    <a class="button button-big pull-right" href="<%= new_backend_carousel_path %>"><%=t('backend.carousels.index.add_content')%></a>
+
+  </div><!-- .content_actions content_actions-top -->
+
+  <div class="content_box">
+
+    <div class="tabs">
+      <nav class="tabs_menu">
+        <ul>
+          <li <%= params['active'].present? ? "" : "class= active"  %>><a href="<%= backend_carousels_path(search: params[:search]) %>"><%=t('backend.carousels.index.all')%></a></li>
+          <li <%= params['active']== '1' ? "class= active" : ""  %>><a href="<%= backend_carousels_path(active: '1', search: params[:search]) %>"><%=t('backend.carousels.index.active')%></a></li>
+          <li <%= params['active']== '0' ? "class= active" : ""  %>><a href="<%= backend_carousels_path(active: '0', search: params[:search]) %>"><%=t('backend.carousels.index.inactive')%></a></li>
+        </ul>
+      </nav>
+
+      <div class="tabs_content active">
+
+
+        <div class="products_grid">
+
+          <div class = "sort_paginate_ajax">
+
+            <%= render 'carousels' %>
+
+          </div>
+
+
+
+        </div><!-- .products_grid -->
+
+
+      </div><!-- .tabs_content -->
+
+
+
+    </div><!-- .tabs -->
+
+  </div><!-- .content_box -->

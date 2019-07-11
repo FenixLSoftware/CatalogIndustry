@@ -1,0 +1,18 @@
+<article class="posts_item post">
+  <figure class="post_media">
+    <a href="<%= post_path(p) %>"><%= image_tag p.picture.url if p.picture.present? %></a>
+
+  </figure>
+  <div class="post_text">
+    <h2 class="post_title"><a href="<%= post_path(p) %>"><%= p.title %></a></h2>
+    <!-- <p class="post_category"><a href="#">???</a> / <a href="#">???</a> / <a href="#">???</a></p> -->
+    <p class="post_category"><a href="<%= p.user.role_admin? ? blog_path : user_path(p.user) %>"><%= p.user.role_admin? ? 'Catalog Industry': p.user.company_name %></a></p>
+    <p class="post_description">
+
+       <% unless p.description.nil?  %>
+        <%= truncate(strip_tags(p.description).to_s, :length => 100, :separator => ' ')  %>
+      <%end%>
+      </p>
+
+  </div>
+</article><!-- .posts_item post -->

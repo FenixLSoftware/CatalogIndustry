@@ -1,0 +1,323 @@
+<% if @limit_reached %>
+
+
+    <div class="alert">
+      <p><%= t('backend.products.form.alert1') %></p>
+    </div>
+
+
+    <div class="content_actions content_actions-top">
+
+      <a class="button button pull-right" href="#"><%= t('backend.products.form.update_account') %></a>
+
+    </div>
+
+    <div class="content_actions content_actions-top">
+
+      <a class="button button pull-right" href="#"><%= t('backend.products.form.back_to_products') %></a>
+
+    </div>
+<% else %>
+
+    <% if @product.errors.any? %>
+        <div class="alert">
+
+
+          <% @product.errors.full_messages.each do |msg| %>
+              <p><%= msg %></p>
+          <% end %>
+        </div>
+    <% end %>
+
+    <%= form_for [:backend, @product], html: {class: 'form_validate'} do |f| %>
+
+
+        <div class="content_box">
+
+
+          <h2 class="content_title"><%= t('backend.products.form.product_information') %></h2>
+
+
+          <div class="tabs">
+            <nav class="tabs_menu">
+              <ul>
+                <li class="active"><a href="#"><%=t('backend.carousels.form.english')%></a></li>
+                <li class=""><a href="#"><%=t('backend.carousels.form.spanish')%></a></li>
+                <li class=""><a href="#"><%=t('backend.carousels.form.french')%></a></li>
+                <li class=""><a href="#"><%=t('backend.carousels.form.german')%></a></li>
+                <li class=""><a href="#"><%=t('backend.carousels.form.italian')%></a></li>
+                <li class=""><a href="#"><%=t('backend.carousels.form.chinese')%></a></li>
+
+              </ul>
+            </nav>
+
+            <% I18n.available_locales.each_with_index do |locale, idx| %>
+                <%= f.globalize_fields_for locale do |g| %>
+
+
+
+
+                    <div class="tabs_content <%= idx == 0 ? 'active' : '' %>">
+                      <br><br>
+
+                       <% if current_user.role_admin? %>
+                        <div class="field">
+                        Empresa: <%= f.object.user.company_name if f.object.user.present? %>
+                        </div>
+                      <% end %>
+
+                      <div class="field">
+                        <label for="name"><%= t('backend.products.form.product_name') %></label>
+                        <%= g.text_field :name, maxlength: 250, class: 'lang_name name-group', data: {group_message: I18n.t('validations.require_one_lang')} %>
+
+                      </div>
+
+                      <div class="field">
+                        <label for="description"><%= t('backend.products.form.description  ') %></label>
+                        <%= g.cktext_area :description, class: 'lang_desc desc-group', data: {group_message: I18n.t('validations.require_one_lang')} %>
+
+                      </div>
+
+                      <div class="field">
+                        <label for="keywords"><%= t('backend.products.form.keywords') %></label>
+                        <%= g.text_field :keywords, maxlength: 250, class: 'lang_keywords keywords-group', data: {group_message: I18n.t('validations.require_one_lang')} %>
+
+                      </div>
+
+                    </div><!-- .tabs_content -->
+
+                <% end %>
+            <% end %>
+
+          </div>
+
+        </div><!-- .content_box -->
+
+
+        <div class="content_box">
+          <!-- # imagenes de l producto -->
+
+          <h2 class="content_title"><%= t('backend.products.form.images') %></h2>
+
+          <h3>Pictures</h3>
+          <div id='product_pictures'>
+            <%= f.fields_for :product_pictures do |product_picture| %>
+                <%= render 'product_picture_fields', :f => product_picture %>
+            <% end %>
+            <div class='links'>
+              <%= link_to_add_association 'add picture', f, :product_pictures, class: 'button' %>
+            </div>
+          </div>
+
+
+        </div>
+
+
+        <div class="content_box">
+          <!-- # categorias actuales del catalogo -->
+
+          <h2 class="content_title"><%= t('backend.catalog.form.cat&pdf') %></h2>
+
+              <div class="field">
+                <label for="published">Categoría</label>
+                <div class="select">
+
+                  <%= select_tag(:root_cat, options_for_select(@roots, (f.object.persisted? ? f.object.categories.last.parent.id : ''))) %>
+                </div>
+              </div>
+              <div class="field">
+                <label for="published">Subcategoría</label>
+                <div class="select">
+                  <%= select_tag('categories[]', options_for_select(@childs, (f.object.persisted? ? f.object.categories.last.id : '')), {:class => 'required'}) %>
+                </div>
+                </div>
+              </div>
+
+        </div>
+
+
+
+
+        <div class="content_box">
+          <h2 class="content_title"><%= t('backend.products.form.publication') %></h2>
+
+          <div class="field">
+            <label for="published"><%= t('backend.products.form.publication') %></label>
+            <div class="select">
+              <%= f.select :published, [[t('backend.products.form.active'), true], [t('backend.products.form.inactive'), false]] %>
+            </div>
+          </div>
+
+          <% if current_user.role_admin? %>
+              <div class="field">
+                <label for="published"><%= t('m.validated_catalog') %></label>
+                <div class="select">
+                  <%= f.select :validated, [[t('backend.catalog.form.active'), true], [t('backend.catalog.form.inactive'), false]] %>
+                </div>
+              </div>
+          <% end %>
+
+          <div class="actions">
+
+            <%= button_tag(type: "submit", class: "button") do %>
+                <%= t('backend.products.form.save') %>
+            <% end %>
+            <a href='<%= backend_products_path %>' class='button'>Cancel</a>
+          </div>
+
+        </div><!-- .content_box -->
+
+        <% if f.object.persisted? %>
+          <div class="content_box">
+            <h2 class="content_title">ELIMINAR PRODUCTO</h2>
+
+            Esta acción no se puede deshacer.
+
+
+
+            <div class="actions">
+
+
+              <%= link_to "ELIMINAR", backend_product_path(f.object), class: 'button', data: { confirm: "Are you sure?" }, method: :delete %>
+
+            </div>
+
+          </div><!-- .content_box -->
+        <% end %>
+
+    <% end %>
+<% end %>
+
+<script>
+
+
+
+    function validateFiles(inputFile) {
+      var maxExceededMessage = "This file exceeds the maximum allowed file size (20 MB)";
+      var extErrorMessage = "Only document file with extension: .jpg, .jpeg, or .png is allowed";
+      var allowedExtension = ["jpg", "jpeg", "png"];
+
+      var extName;
+      var maxFileSize = $(inputFile).data('max-file-size');
+      var sizeExceeded = false;
+      var extError = false;
+
+      $.each(inputFile.files, function() {
+        if (this.size && maxFileSize && this.size > parseInt(maxFileSize)) {sizeExceeded=true;};
+        extName = this.name.split('.').pop();
+        if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
+      });
+      if (sizeExceeded) {
+        //window.alert(maxExceededMessage);
+        <%= add_gritter("Only document file with extension: .jpg, .jpeg, or .png is allowed", :title => "Extension error", :image => :error) %>
+        $(inputFile).val('');
+      };
+
+      if (extError) {
+        //window.alert(extErrorMessage);
+        <%= add_gritter("This file exceeds the maximum allowed file size (20 MB)", :title => "File size error", :image => :error) %>
+        $(inputFile).val('');
+      };
+    }
+
+
+    $(document).ready(function () {
+        function format(item) {
+                  //opt = $('select').find(':selected');
+                  opt = $('select [value=' + item.id + ']');
+                  //[value=258]
+                  sel = opt.text();
+                  og = opt.closest('optgroup').attr('label');
+                  return og + " - " + item.text;
+
+            }
+
+
+        $('.js-example-basic-multiple').select2({
+            closeOnSelect: false,
+            templateSelection: format,
+            escapeMarkup: function(m) { return m; }
+        });
+        // evita que select2 baja al top al seleccionar elemento
+        var scrollTop;
+        $('.js-example-basic-multiple').on("select2:selecting", function (event) {
+            var $pr = $('#' + event.params.args.data._resultId).parent();
+            scrollTop = $pr.prop('scrollTop');
+        });
+        $('.js-example-basic-multiple').on("select2:select", function (event) {
+            var $pr = $('#' + event.params.data._resultId).parent();
+            $pr.prop('scrollTop', scrollTop);
+        });
+
+        for (var i in CKEDITOR.instances) {
+          CKEDITOR.instances[i].on('change', function()
+          {
+            CKEDITOR.instances.product_translations_attributes_1_description.updateElement();
+            CKEDITOR.instances.product_translations_attributes_2_description.updateElement();
+            CKEDITOR.instances.product_translations_attributes_3_description.updateElement();
+            CKEDITOR.instances.product_translations_attributes_4_description.updateElement();
+            CKEDITOR.instances.product_translations_attributes_5_description.updateElement();
+            CKEDITOR.instances.product_translations_attributes_6_description.updateElement();
+
+          });
+        }
+    });
+
+
+        // categorias
+
+        $('#root_cat').change(function(e) {
+            var root_cat = $(this).val();
+
+
+            $.ajax({
+                type: "GET",
+                data: {cat: root_cat},
+                url: '/categories/list',
+                dataType: 'json',
+                success: function(json) {
+
+                    $("#categories_").empty();
+                    // $.each(json['donts'], function(value, key) {
+                    //     $("#categories_ option[value='" + key.id + "']").remove();
+                    // });
+
+                    $.each(json['dos'], function(value, key) {
+                        $("#categories_").append('<option value="' + key.id + '">' + key.name + '</option>');
+                    });
+
+
+
+                }
+            });
+
+        });
+
+        $.ajax({
+                type: "GET",
+                data: {cat: $('#root_cat').val()},
+                url: '/categories/list',
+                dataType: 'json',
+                success: function(json) {
+                    $.each(json['donts'], function(value, key) {
+                        $("#categories_ option[value='" + key.id + "']").remove();
+                    });
+
+                }
+            });
+
+
+    $('.tabs_menu a').on('click', function (e) {
+        e.preventDefault();
+        var $tabs = $(this).closest('.tabs'),
+            $li = $(this).closest('li'),
+            index = $li.index();
+
+        $tabs.find('.tabs_menu li').removeClass('active');
+        $li.addClass('active');
+        $tabs.find('.tabs_content').removeClass('active');
+        $tabs.find('.tabs_content').eq(index).addClass('active');
+    });
+
+
+</script>

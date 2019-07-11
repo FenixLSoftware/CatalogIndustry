@@ -1,0 +1,47 @@
+<div class="content_box">
+    <h2 class="content_title"><%=t('backend.searches.index.searches')%></h2>
+
+    <% if @searches.present? %>
+
+    <table>
+      <tbody><tr>
+        <th><%=t('backend.searches.index.date')%></th>
+        <th><%=t('backend.searches.index.search_terms')%></th>
+        <th><%=t('backend.searches.index.actions')%></th>
+        <th></th>
+
+      </tr>
+      <% @searches.each do |search| %>
+      <tr>
+        <td><%= search.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+
+
+
+
+        <td>
+          <%= search.term%>
+        </td>
+
+
+        <td><%= link_to t('backend.searches.index.repeat_search'), search_get_path(term: search.term) %> </td>
+        <td><%= link_to t('m.delete_search'), backend_search_path(search.id), :method => :delete, class: 'button button-small' %></td>
+      </tr>
+      <% end %>
+
+    </tbody>
+    </table>
+
+    <div class="content_actions">
+
+      <%= will_paginate @visits %>
+
+    </div><!-- .content_actions -->
+
+
+    <% else %>
+      <%=t('backend.searches.index.no_request')%>
+    <% end %>
+
+
+
+  </div>

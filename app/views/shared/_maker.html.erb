@@ -1,0 +1,14 @@
+      <div class="maker">
+        <span class="maker_text"><%= t('manufacturer') %></span>
+        <figure class="maker_media">
+          <!-- <a href="#"><img src="images/companies/idecolor.png" alt="Logo de IdeColor"></a> -->
+          <span><a href="<%= user_path(object.user) %>"><img src="<%= object.user.company_picture.url if object.user.present? %>" alt="Logo de IdeColor"></a></span>
+        </figure>
+        <p class="maker_name"><a href="<%= user_path(object.user) %>"><%= object.user.company_name %></a></p>
+        <!-- <p class="maker_description">NCS para arquitectos y diseñadores?????</p> -->
+        <ul class="maker_details">
+          <!-- <li><span class="icon_tag"></span> nombre fiscal empresa????</li> -->
+          <li><span class="icon_phone"></span> <a href="tel:<%= object.user.phone %>"><%= object.user.phone %></a></li>
+          <li><span class="icon_web"></span> <a href="<%= object.user.website.to_s %>" rel="nofollow" target="_blank"><%= object.user.website.to_s %></a></li>
+        </ul>
+      </div><!-- .maker -->

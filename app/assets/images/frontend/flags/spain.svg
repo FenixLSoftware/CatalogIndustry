@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 14 9" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>-g-Icons/ic-flags/spain</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Modules/Head/Head-02" transform="translate(-939.000000, -33.000000)">
+            <g id="Icons/ic-flags/spain" transform="translate(939.000000, 33.000000)">
+                <g>
+                    <path d="M0.240920078,8.99263393 L13.7318168,8.99263393 C13.8648577,8.99263393 13.9727368,8.88675 13.9727368,8.75616964 L13.9727368,0.243857143 C13.9727368,0.113276786 13.8648577,0.00739285714 13.7318168,0.00739285714 L0.240920078,0.00739285714 C0.107879142,0.00741964286 0,0.113276786 0,0.243857143 L0,8.75616964 C0,8.88677679 0.107879142,8.99263393 0.240920078,8.99263393 Z" id="Shape" fill="#C8414B" fill-rule="nonzero"></path>
+                    <rect id="Rectangle-path" fill="#FFD250" fill-rule="nonzero" x="0" y="2.25" width="13.9727096" height="4.5"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

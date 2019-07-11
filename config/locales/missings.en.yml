@@ -1,0 +1,87 @@
+en:
+  m:
+    placeholder_search: 'Search by company, category or product'
+    access_to_companies: 'Access to companies'
+    results_for: 'Results for '
+    categories: 'Categories'
+    products: 'Products'
+    companies: 'Companies'
+    catalogs: 'Catalogs'
+    posts: 'News'
+    see_all: 'See all'
+    manufacturer: 'Manufacturer:'
+    back: 'Back'
+    language: 'Language'
+    remove_pdf: 'Remove PDF'
+    download: 'Download'
+    remove_catalog: 'REMOVE CATALOG'
+    cant_be_undone: 'This action can not be undone.'
+    remove: 'Delete'
+    picture_company: 'Company picture (1440x220px)'
+    professionals_listing: 'Professional listings'
+    companies_listing: 'Company listings'
+    payments_listing: 'Payments listings'
+    company: 'Company'
+    validated_catalog: 'Validated by Catalog Industry'
+    actual_plan: 'Current plan'
+    premium: 'Premium'
+    till: 'until'
+    basic_plan_info: 'Basic plan info'
+    upgrade_to_premium: 'Upgrade to Premium plan'
+    payments_history: 'Payments history'
+    change_card: 'Change card'
+    disable_premium: 'Disable Premium plan'
+    cookies1: 'This website uses cookies to ensure a better user experience.'
+    cookies_ok: 'Dismiss'
+    cookies_learn: 'Learn more'
+    catalog_favorite: 'Catalog is favorited'
+    catalog_no_favorite: 'Catalog is NOT favorited'
+    contact_sent: 'Contact request sent'
+    product_favorite: 'The product is one of your favorites'
+    product_no_favorite: 'The product is NOT one of your favorites anymore'
+    saved_search: 'Saved search'
+    info_sent: 'Request for information sent'
+    company_favorite: 'The company is one of your favorites'
+    company_no_favorite: 'The company is NOT one of your favorites anymore'
+    newsletter_subscribed: 'You have subscribed to the newsletter'
+    deleted_catalog: 'Catalog removed'
+    deleted_product: 'Product removed'
+    deleted_new: 'Post removes'
+    updated_catalog: 'Updated catalog'
+    updated_product: 'Updated product'
+    updated_new: 'Updated post'
+    created_ok: 'Created correctly'
+    review_info: 'Review the information provided'
+    removed_info: 'Deleted data'
+    plan_changed: 'Plan changed'
+    error_in_card: 'Error in the data of the card / Card rejected'
+    updated_data: 'Updated data'
+    password_changed: 'Password changed'
+    password_not_changed: 'Incorrect current password. It has not been changed'
+    your_search: 'Write your search terms'
+    recieve_new_link_mail: 'You will receive a link in your mailbox to change the password'
+    company_name: 'Company name'
+    recaptcha: 'Please, check "No soy un robot" before submit information.'
+    delete_search: 'Delete this search'
+    categories_like: 'Favorite sector'
+    data_not_found: 'No data'
+    password_8_chars: 'The passwords must have at least 8 characters. The password has not been changed'
+
+    pay1: You'll be charged €99,99 EUR monthly (plus tax) until you decide to downgrade or cancel.
+    pay2: Can I downgrade my plan?
+    pay3: Yes, you can downgrade, cancel your subscription any time you like
+    pay4: Current card
+    pay5: Name
+    pay6: No assigned card
+    pay7: Credit card information
+    pay8: Credit or debit card number
+    pay9: Expiration date
+    pay10: Security code
+    pay11: Required fields
+    pay12: Purchase summary
+    pay13: Monthly fee
+    pay14: V.A.T. ( 21% )
+    pay15: Total
+    pay16: Start your PREMIUM Subscription
+    pay17: New card
+    pay18: Cancel

@@ -1,0 +1,58 @@
+
+<main id="main" class="contact">
+  <div class="container">
+
+    <h2 class="title_L">Contacto</h2>
+
+    <p>Si tiene alguna pregunta o comentario rellene el siguiente formulario y haremos todo lo posible para responder dentro de un día hábil.</p>
+
+    <%= form_tag send_contact_static_index_path, {class: 'form_validate'} do %>
+      <h3 class="legend">Datos de contacto</h3>
+
+      <div class="field">
+        <%= text_field_tag :name,'',class: 'required' %>
+        <label for="name">Nombre * (campo obligatorio)</label>
+      </div><!-- .field -->
+
+      <div class="field">
+        <%= text_field_tag :company,'',class: 'required' %>
+        <label for="name">Empresa * (campo obligatorio)</label>
+      </div><!-- .field -->
+
+      <div class="field">
+        <%= text_field_tag :email,'',class: 'required' %>
+        <label for="mail">Email * (campo obligatorio)</label>
+      </div><!-- .field -->
+
+      <div class="field">
+        <%= text_field_tag :phone %>
+        <label for="phone">Teléfono</label>
+      </div><!-- .field -->
+
+      <div class="field">
+        <%= text_field_tag :city,'',class: 'required' %>
+        <label for="mail">Ciudad * (campo obligatorio)</label>
+      </div><!-- .field -->
+
+      <div class="field">
+        <%= text_field_tag :country,'',class: 'required' %>
+        <label for="mail">País * (campo obligatorio)</label>
+      </div><!-- .field -->
+
+
+      <div class="field">
+        <label for="message">¿Cómo podemos ayudarte?</label>
+        <%= text_area_tag :message,'',class: 'required' %>
+      </div>
+
+        <%= recaptcha_tags site_key: Rails.application.secrets.recaptcha_site_key %>
+        <br>
+      <div class="actions">
+
+
+        <button class="button button-expand" type="submit">Enviar solicitud</button>
+      </div>
+    <% end %>
+
+  </div><!-- .container -->
+</main>

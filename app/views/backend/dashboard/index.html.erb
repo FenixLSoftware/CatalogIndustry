@@ -1,0 +1,228 @@
+<div class="tabs">
+    <nav class="tabs_menu">
+      <ul>
+        <li class="active"><a href="#">Dashboard</a></li>
+        <li class=""><a href="<%= activity_backend_dashboard_index_path %>"> <%= t('backend.dashboard.activity')%> </a></li>
+      </ul>
+    </nav>
+
+    <div class="tabs_content active" style="">
+
+      <div class="dashboard">
+
+        <div class="box box-2of3">
+          <h2 class="dashboard_title"><%= t('backend.dashboard.how_2_start')%></h2>
+
+          <ul class="start">
+            <li>
+              <span class="icon_start-check"></span>
+              <strong><%= t('backend.dashboard.update_profile')%></strong>
+              <%= current_user.role_professional? ? raw('<a class="button" href="' + edit_backend_user_path(current_user) + '">Actualiza tu cuenta</a>') :   t('backend.dashboard.done')%>
+            </li>
+            <li>
+              <span class="icon_start-check"></span>
+              <strong><%= t('backend.dashboard.upload_catalog_product')%></strong>
+              <% if current_user.role_professional? %>
+                <a class="button" href=" <%= edit_backend_user_path(current_user) %>"><%= t('backend.dashboard.update_account')%></a>
+              <% else  %>
+                <% if current_user.catalogs.size > 0 || current_user.products.size > 0 %>
+                  <%= t('backend.dashboard.done')%>
+                <% else  %>
+                  <a class="button" href=" <%= new_backend_catalog_path %>"><%= t('backend.catalog.new_catalog') %></a>
+                <% end %>
+              <% end %>
+
+
+
+            </li>
+            <li>
+              <span class="icon_start-premium"></span>
+              <strong> <%= t('backend.dashboard.update_plan')%></strong>
+              <a class="button" href="<%= edit_backend_user_path(current_user, anchor: 'card') %>"><%= t('backend.dashboard.payment_details')%></a>
+            </li>
+          </ul>
+
+        </div><!-- .box box-2of3 -->
+
+        <div class="box box-1of3">
+          <h2 class="dashboard_title"><%= t('backend.dashboard.summary')%></h2>
+          <span class="dashboard_day"><%= (Time.now - 1.months).strftime("%d/%m/%Y") %> - <%= (Time.now - 1.minute).strftime("%d/%m/%Y") %></span>
+
+          <ul class="amounts">
+            <li><strong><%= @visits.size.to_s %></strong> <%= t('backend.dashboard.visitors')%></li>
+            <li><strong><%= current_user.likers(User).size.to_s %></strong> <%= t('backend.dashboard.followers')%></li>
+            <li><strong>??</strong> <%= t('backend.dashboard.clicks')%></li>
+          </ul>
+        </div><!-- .box box-1of3 -->
+
+        <div class="box box-1of3">
+
+          <div class="dropdown">
+            <a class="dropdown_link" href="#">
+              <span class="value"><%= t('backend.dashboard.requests')%></span>
+            </a>
+
+          </div><!-- .dropdown -->
+
+          <div class="dashboard_list">
+            <ul>
+              <% @informations.each do |information| %>
+              <li>
+                <%= information.name %>. <%= information.company %>
+                <span><%= information.created_at.strftime("%d/%m/%Y") %> (<%= time_ago_in_words(information.created_at) %>)</span>
+                <a href="<%= backend_informations_path %>"><%= t('backend.dashboard.see_details')%></a>
+              </li>
+              <% end %>
+            <ul>
+          </ul></ul></div><!-- .dashboard_list -->
+
+        </div><!-- .box box-1of3 -->
+
+        <div class="box box-1of3">
+
+          <div class="dropdown">
+            <a class="dropdown_link" href="#">
+              <span class="value"><%= t('backend.dashboard.identified_visitors')%></span>
+            </a>
+
+          </div><!-- .dropdown -->
+
+          <div class="dashboard_list">
+            <ul>
+              <% @visits.each do |visit| %>
+              <% user = User.find_by(id: visit.user_id) %>
+                <% if @user.present? %>
+                  <li>
+                    <%= user.linkedin_url.present? ? link_to(user.name, user.linkedin_url) : user.name %>. <%= user.company_name %>
+                    <span><%= visit.created_at.strftime("%d/%m/%Y") %> (<%= time_ago_in_words(visit.created_at) %>)</span>
+                  </li>
+                <% end %>
+              <% end %>
+
+            <ul>
+          </ul></ul></div><!-- .dashboard_list -->
+
+        </div><!-- .box box-1of3 -->
+
+        <div class="box box-1of3">
+
+          <div class="dropdown">
+            <a class="dropdown_link" href="#">
+              <span class="value"><%= t('backend.dashboard.latest_products')%></span>
+            </a>
+
+          </div><!-- .dropdown -->
+
+          <div class="dashboard_list">
+            <ul>
+              <% @catalogs.each do |catalog| %>
+              <li>
+                <%= link_to catalog.name.to_s, edit_backend_catalog_path(catalog) %>
+                <span><%= catalog.created_at.strftime("%d/%m/%Y") %> (<%= time_ago_in_words(catalog.created_at) %>)</span>
+                <span>Puentes grúa / Puentes térmicos...</span>
+              </li>
+              <% end %>
+            <ul>
+          </ul></ul></div><!-- .dashboard_list -->
+
+        </div><!-- .box box-1of3 -->
+
+<!--         <div class="box box-3of3">
+          <h2 class="dashboard_title">Páginas vistas??? (que ha de salir aqui)</h2>
+          <span class="dashboard_day"><%= (Time.now - 2.months).strftime("%d/%m/%Y") %> - <%= (Time.now - 1.minute).strftime("%d/%m/%Y") %></span>
+
+
+
+        </div><!-- .box box-3of3 --> -->
+
+      </div><!-- .dashboard -->
+
+    </div><!-- .tabs_content -->
+
+    <div class="tabs_content">
+
+      <div class="content_box">
+
+        <form method="POST" action="#" class="searcher">
+          <input type="text" placeholder="Buscar">
+          <button type="submit"><span class="icon_search">Buscar</span></button>
+        </form>
+
+        <div class="activity">
+          <ul class="activity_list">
+            <li>
+              <span class="activity_time">
+                <strong>Hace 22 minutos</strong>
+                Hoy. 21:00:01h
+              </span>
+              <span class="activity_text">
+                Has añadido un nuevo producto <a href="#">Refrigerador industrial Power Cold XFD1</a>
+              </span>
+            </li>
+            <li>
+              <span class="activity_time">
+                <strong>Hace 1 hora</strong>
+                Hoy. 20:00:00h
+              </span>
+              <span class="activity_text">
+                Has publicado un nuevo post <a href="#">Nuevas bañeras de una pieza única La Belle Excellence y Squaro Excellence de Villeroy &amp; Boch. El placer de bañarse en una bañera sin juntas</a>
+              </span>
+            </li>
+            <li>
+              <span class="activity_time">
+                <strong>Hace tres horas </strong>
+                Hoy. 17:00:00h
+              </span>
+              <span class="activity_text">
+                Has publicado un nuevo post <a href="#">El placer de bañarse en una bañera sin juntas</a>
+              </span>
+            </li>
+            <li>
+              <span class="activity_time">
+                <strong>7 de mayo 2017 </strong>
+                Ayer. 21:00:01h
+              </span>
+              <span class="activity_text">
+                Has añadido un nuevo producto <a href="#">Refrigerador industrial Power Cold XFD1</a>
+              </span>
+            </li>
+            <li>
+              <span class="activity_time">
+                <strong>7 de mayo 2017 </strong>
+                Ayer. 20:44:01h
+              </span>
+              <span class="activity_text">
+                Has añadido un nuevo producto <a href="#">Colurpin II</a>
+              </span>
+            </li>
+            <li>
+              <span class="activity_time">
+                <strong>6 de mayo 2017 </strong>
+                Lunes. 10:33:44h
+              </span>
+              <span class="activity_text">
+                Has añadido un nuevo producto <a href="#">SuperCast Plus D</a>
+              </span>
+            </li>
+          </ul>
+
+          <nav class="pagination">
+            <a class="disabled" href="#"><span class="icon_prev"></span></a>
+            <ul>
+              <li class="current"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+            </ul>
+            <a href="#"><span class="icon_next"></span></a>
+          </nav><!-- .pagination -->
+
+        </div><!-- .activity -->
+
+      </div><!-- .content_box -->
+
+    </div><!-- .tabs_content -->
+
+
+  </div>

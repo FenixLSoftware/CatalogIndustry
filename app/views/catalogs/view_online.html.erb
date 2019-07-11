@@ -1,0 +1,101 @@
+
+
+<%#= javascript_include_tag('jquery-1.11.0.min') %>
+<%= javascript_include_tag('jquery.mousewheel.min') %>
+<%= javascript_include_tag('three.min') %>
+<%= javascript_include_tag('jquery.onebook3d-2.33') %>
+
+
+
+
+<nav class="breadcrumb">
+  <ul>
+    <li><a href="<%= root_path %>"><%=t('catalogs.show.start')%></a></li>
+    <li><a href="<%= catalogs_path %>"><%=t('catalogs.show.catalogs')%></a></li>
+    <li class="current"><%= @catalog.name %></li>
+  </ul>
+
+</nav>
+
+<main id="main">
+  <div class="container">
+
+      <h2 class="title_L"><%= @catalog.name %></h2>
+
+      <div  style="background-color:#a8a8a8" class="section red">
+        <div  style="padding:30px;">
+          <div id="photobook" style="height: 571px;">
+
+
+          </div>
+        </div>
+      </div>
+
+    <section class="content">
+
+
+      <br>
+      <div class="product_details">
+
+        <div class="product_links">
+
+          <!-- <a class="item" href="#">Idioma: Español</a> -->
+          <div class="group">
+
+              <a href="<%= get_pdf_catalog_path(@catalog) %>"><%=t('catalogs.show.download')%> <span class="fa fa-download" aria-hidden="true"></span></a>
+          </div>
+
+          <% if (@catalog.translations.map(&:pdf).uniq - [nil]).size > 1 %>
+            <div class="group">
+              <% @catalog.translations.each do |translation|  %>
+                <% if translation.pdf.present? %>
+                  <a href="<%= view_online_catalog_path(@catalog, version: translation.locale.to_s) %>"><%= t('m.language') %>  <%= translation.locale.to_s.upcase %> <span class="fa fa-external-link" aria-hidden="true"></span></a>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div><!-- .product_links -->
+      </div><!-- .product_details -->
+
+      <% @catalog.categories.each do |category| %>
+        <ul class="product_category">
+          <li><a href="<%= category_path(category.parent) %>"><%= category.parent.name %></a></li>
+          <li><a href="<%= category_path(category) %>"><%= category.name %></a><li>
+        </ul>
+      <% end %>
+
+      <div class="product_about">
+        <p class="title_S"><%=t('catalogs.show.description')%></p>
+
+            <% unless @catalog.description.nil?  %>
+                <p><%= @catalog.description.html_safe %></p>
+                <%end%>
+
+      </div><!-- .product_about -->
+
+
+      <br>
+      <br>
+
+<a class="button_secondary" href="<%= catalog_path(@catalog) %>"><%= t('m.back') %></a>
+    </section><!-- .content -->
+
+
+
+
+  </div><!-- .container -->
+</main>
+
+
+<script>
+
+$(function(){
+  <%#= ghjk %>
+  var src5 = <%= raw @pages.map{|p| p.page.url}.to_json %>;
+  //var src5 = ['system/a.jpg'];
+  $('#photobook').onebook(src5,{language:'<%= I18n.locale %>'});
+
+});
+
+
+</script>

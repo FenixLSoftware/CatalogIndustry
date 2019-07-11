@@ -1,0 +1,137 @@
+
+<% if session[:event_contact] == 'OK' %>
+  <script>
+  gtag('event', 'conversion', {'send_to': 'AW-984000230/1RrFCMCR_4QBEObNmtUD'});
+  </script>
+
+  <% session[:event_contact] == '' %>
+<% end %>
+
+
+<nav class="breadcrumb">
+  <ul>
+    <li><a href="<%= root_path %>"><%=t('products.show.start')%></a></li>
+    <li><a href="<%= products_path %>"><%=t('products.show.products')%></a></li>
+    <li class="current"><%= @product.name %></li>
+  </ul>
+</nav>
+
+<main id="main">
+  <div class="container">
+
+    <section class="content">
+
+      <h2 class="title_L"><%= @product.name %></h2>
+
+      <div class="product_details">
+        <div id="flexslider_product" class="product_slider flexslider">
+          <ul class="slides">
+            <% if @product.product_pictures.present? %>
+              <% @product.product_pictures.each do |product_picture| %>
+                <li><img src="<%= product_picture.picture.url %>" alt=""></li>
+              <% end %>
+            <% else %>
+              <li><img src="<%= @product.first_picture %>" alt=""></li>
+            <% end %>
+
+          </ul>
+        </div><!-- #flexslider_product -->
+        <div id="flexslider_product_thumbs" class="product_slider_thumbs flexslider">
+          <ul class="slides">
+            <% if @product.product_pictures.present? %>
+              <% @product.product_pictures.each do |product_picture| %>
+                <li><img src="<%= product_picture.picture.url %>" alt=""></li>
+              <% end %>
+            <% else %>
+              <li><img src="<%= @product.first_picture %>" alt=""></li>
+            <% end %>
+          </ul>
+        </div><!-- #flexslider_product_thumbs -->
+      </div><!-- .product_details -->
+
+      <% @product.categories.each do |category| %>
+        <ul class="product_category">
+          <li><a href="<%= category_path(category.parent) %>"><%= category.parent.name %></a></li>
+          <li><a href="<%= category_path(category) %>"><%= category.name %></a><li>
+        </ul>
+      <% end %>
+
+      <div class="product_about">
+        <p class="title_S"><%=t('products.show.description')%></p>
+        <p><%= @product.description.html_safe %></p>
+
+      </div><!-- .product_about -->
+      <% if @product.user.present?  %>
+      <div class="box products products-related">
+
+        <p class="title_S"><%=t('products.show.products_of_the_company')%><a href="#"><%=t('products.show.see_all')%></a></p>
+
+        <div class="products_grid">
+          <% @product.user.products[0..2].each do |product| %>
+            <div class="products_item product">
+              <figure class="product_media">
+                <a href="<%= product_path(product) %>"><img src="<%= product.first_picture %>" alt=""></a>
+                <!-- <span><img src="images/content/product-10.jpg" alt=""></span> -->
+              </figure>
+              <div class="product_info">
+                <h4 class="product_name"><a href="<%= product_path(product) %>"><%= product.name %></a></h4>
+                <p class="product_company"><a href="#"><%= @product.user.company_name %></a></p>
+                <p class="product_description">
+              <% unless product.description.nil?  %>
+                <%= truncate(strip_tags(product.description).to_s, :length => 100, :separator => ' ')  %>
+                <%end%>
+              </p>
+              </div>
+            </div><!-- .products_item product -->
+          <% end %>
+
+
+        </div><!-- .products_grid -->
+
+      </div><!-- .box products products-related -->
+      <% end %>
+
+      <% if @product.user.present?  %>
+      <div class="box products products-catalogs">
+
+        <p class="title_S"><%=t('products.show.company_catalogs')%><a href="#"><%=t('products.show.see_all')%></a></p>
+
+        <div class="products_grid">
+          <% @product.user.catalogs.shuffle[0..3].each do |catalog| %>
+          <div class="products_item product">
+            <figure class="product_media">
+              <a href="<%= catalog_path(catalog) %>"><img src="<%= catalog.first_page_picture.url %>" alt=""></a>
+              <!-- <span><img src="images/content/product-7.jpg" alt=""></span> -->
+            </figure>
+            <div class="product_info">
+              <h4 class="product_name"><a href="<%= catalog_path(catalog) %>"><%= catalog.name %></a></h4>
+              <p class="product_company"><a href="#"><%= catalog.user.company_name %></a></p>
+              <p class="product_description">
+                <% unless catalog.description.nil?  %>
+                 <%= truncate(strip_tags(catalog.description).to_s, :length => 100, :separator => ' ')  %>
+                <%end%>
+              </p>
+            </div>
+          </div><!-- .products_item product -->
+          <% end %>
+
+        </div><!-- .products_grid -->
+
+      </div><!-- .box products products-catalogs -->
+      <% end %>
+    </section><!-- .content -->
+
+    <aside class="sidebar">
+
+      <%= render partial: 'shared/maker', :locals => {:object => @product} %>
+
+
+      <%= render partial: '/shared/like_product' %>
+
+      <%= render partial: 'shared/contact_info' , :locals => {:object => @product.user, :item => 'p', :item_id => @product.id} %>
+
+
+    </aside><!-- .sidebar -->
+
+  </div><!-- .container -->
+</main>

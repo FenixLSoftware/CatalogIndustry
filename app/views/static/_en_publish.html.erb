@@ -1,0 +1,112 @@
+<body id="publish">
+
+<nav class="breadcrumb">
+  <ul>
+    <li><a href="<%= root_path %>">Inicio</a></li>
+    <li class="current">Publish in Catalog Industry</li>
+  </ul>
+</nav><!-- .breadcrumb -->
+
+<section class="publish_hero" style="background-image: url(<%= asset_path ("frontend/backgrounds/register.jpg")%>)">
+  <div class="container">
+
+    <div class="publish_hero_intro">
+      <h2 class="title_L">Position your company, catalogs and products on the Internet</h2>
+      <p>Industry professionals search the Internet daily for commercial information and techniques, making your catalogs the best tool to promote your products and / or services, if you position them in the first search results.</p>
+    </div><!-- .publish_hero_intro -->
+
+    <% unless current_user.present? %>
+    <div class="publish_hero_form">
+
+      <%= render partial: 'shared/register'%>
+    </div>
+
+    <% end %>
+
+  </div>
+
+
+
+</section><!-- .publish_hero -->
+
+<section class="publish_features">
+  <div class="container">
+
+    <h3 class="publish_features_title">Benefits for your company</h3>
+    <p>Powerful lead generation, content marketing and industrial branding that connects your business with an instant audience of industrial buyers.</p>
+
+    <div class="row">
+      <div class="col col_1of2">
+
+        <div class="publish_features_item">
+          <h4>More effective lead capture</h4>
+          <p>The possibility of being found by industry professionals increases when your catalog is published on the Internet.</p>
+        </div>
+
+        <div class="publish_features_item">
+          <h4>Promote new products and industrial catalogs</h4>
+          <p>Add your products and catalogs and get closer approximations of these and your potential customers.</p>
+        </div>
+
+        <div class="publish_features_item">
+          <h4>Presence in Social Networks</h4>
+          <p>Make yourself known, promote your catalogs and industrial products and interact with potential customers on a daily basis.</p>
+        </div>
+
+      </div><!-- .col col_1of2 -->
+      <div class="col col_1of2">
+
+        <div class="publish_features_item">
+          <h4>Increase your sales</h4>
+          <p>Receive requests for information and access "identi fi ed visitors" of the platform to help your business force.</p>
+        </div>
+
+        <div class="publish_features_item">
+          <h4>Permanent visibility online</h4>
+          <p>Virtual stand (company presentation, contact data, web link, catalogs, products, etc.) 365 days a year with daily visits.</p>
+        </div>
+
+        <div class="publish_features_item">
+          <h4>Increase your international image</h4>
+          <p>Promote your catalogs and industrial products in several languages ​​and find new customers all over the world.</p>
+        </div>
+
+      </div><!-- .col col_1of2 -->
+    </div><!-- .row -->
+
+  </div>
+</section>
+
+<aside class="publish_banner">
+  <div class="container">
+    <h3 class="publish_banner_title">Guaranteed daily visits</h3>
+    <p>Your multimedia platform specialized in industrial communication</p>
+    <p>The most effective advertising with guaranteed visits!</p>
+  </div>
+</aside>
+
+<div class="publish_map">
+  <div class="container">
+    <!-- <img src="images/publish-map.png" alt="Mapa"> -->
+    <%= image_tag 'frontend/publish-map.png' %>'
+  </div>
+</div>
+
+<div class="publish_contact">
+  <div class="container">
+    <p>Contact us at (+34) 912 303 494 or through email</p>
+    <p><a href="mailto:ayuda@catalogindustry.com">info@catalogindustry.com</a></p>
+  </div>
+</div>
+
+
+
+
+<script src="assets/javascripts/dependencies/jquery-3.1.1.min.js"></script>
+<script src="assets/javascripts/dependencies/jquery.flexslider.js"></script>
+<script src="assets/javascripts/dependencies/masonry.pkgd.min.js"></script>
+<script src="assets/javascripts/all.js"></script>
+
+
+
+</body>

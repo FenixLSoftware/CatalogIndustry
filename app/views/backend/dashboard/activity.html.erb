@@ -1,0 +1,97 @@
+<div class="tabs">
+    <nav class="tabs_menu">
+      <ul>
+        <li><a href="<%= backend_dashboard_index_path %>">Dashboard</a></li>
+        <li class="active"><a href="#"><%= t('backend.dashboard.activity') %></a></li>
+      </ul>
+    </nav>
+
+
+
+    <div class="tabs_content active">
+
+      <div class="content_box">
+
+        <form method="POST" action="#" class="searcher">
+          <input type="text" placeholder= <%= t('backend.dashboard.search')%>>
+          <button type="submit"><span class="icon_search"><%= t('backend.dashboard.search')%></span></button>
+        </form>
+
+        <div class="activity">
+          <ul class="activity_list">
+            <li>
+              <span class="activity_time">
+                <strong>Hace 22 minutos</strong>
+                Hoy. 21:00:01h
+              </span>
+              <span class="activity_text">
+                Has añadido un nuevo producto <a href="#">Refrigerador industrial Power Cold XFD1</a>
+              </span>
+            </li>
+            <li>
+              <span class="activity_time">
+                <strong>Hace 1 hora</strong>
+                Hoy. 20:00:00h
+              </span>
+              <span class="activity_text">
+                Has publicado un nuevo post <a href="#">Nuevas bañeras de una pieza única La Belle Excellence y Squaro Excellence de Villeroy &amp; Boch. El placer de bañarse en una bañera sin juntas</a>
+              </span>
+            </li>
+            <li>
+              <span class="activity_time">
+                <strong>Hace tres horas </strong>
+                Hoy. 17:00:00h
+              </span>
+              <span class="activity_text">
+                Has publicado un nuevo post <a href="#">El placer de bañarse en una bañera sin juntas</a>
+              </span>
+            </li>
+            <li>
+              <span class="activity_time">
+                <strong>7 de mayo 2017 </strong>
+                Ayer. 21:00:01h
+              </span>
+              <span class="activity_text">
+                Has añadido un nuevo producto <a href="#">Refrigerador industrial Power Cold XFD1</a>
+              </span>
+            </li>
+            <li>
+              <span class="activity_time">
+                <strong>7 de mayo 2017 </strong>
+                Ayer. 20:44:01h
+              </span>
+              <span class="activity_text">
+                Has añadido un nuevo producto <a href="#">Colurpin II</a>
+              </span>
+            </li>
+            <li>
+              <span class="activity_time">
+                <strong>6 de mayo 2017 </strong>
+                Lunes. 10:33:44h
+              </span>
+              <span class="activity_text">
+                Has añadido un nuevo producto <a href="#">SuperCast Plus D</a>
+              </span>
+            </li>
+          </ul>
+
+          <nav class="pagination">
+            <a class="disabled" href="#"><span class="icon_prev"></span></a>
+            <ul>
+              <li class="current"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+            </ul>
+            <a href="#"><span class="icon_next"></span></a>
+          </nav><!-- .pagination -->
+
+        </div><!-- .activity -->
+
+      </div><!-- .content_box -->
+
+    </div><!-- .tabs_content -->
+
+
+  </div>

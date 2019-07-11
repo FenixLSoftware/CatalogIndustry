@@ -1,0 +1,9 @@
+<a class="nav_publish" href= <%=publish_static_index_path%> ><%=t('shared.menu_top_login.publish_in_catalog')%></a>
+<% if current_user.present? %>
+  <a class="nav_register" href="<%= backend_dashboard_index_path %>"><%= current_user.name.to_s + ' - ' + (current_user.role_company? ? (current_user.company_name.to_s + " - ") : '') %> <%=t('shared.menu_top_login.control_panel')%></a>
+  <%= link_to(t('layouts.backend.logout'), destroy_user_session_path, method: :delete, class: 'nav_register') %>
+<% else %>
+  <a id="openLogin" class="openLogin nav_login" href="#login"><%=t('shared.menu_top_login.log_in')%></a>
+  <a class="nav_register" href="<%= register_path %>"><%=t('shared.menu_top_login.sing_up')%></a>
+
+<% end %>

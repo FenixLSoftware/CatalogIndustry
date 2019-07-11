@@ -1,0 +1,43 @@
+
+
+
+          <% @carousel_all.each do |carousel| %>
+
+          <div class="products_item">
+
+            <figure class="product_media">
+
+              <% if carousel.published? %>
+                <span class="published"><%=t('backend.carousels.form.published')%></span>
+              <% else %>
+                <span class="unpublished">Disabled</span>
+              <% end %>
+
+              <a href="<%= edit_backend_carousel_path(carousel) %>"><%= image_tag(carousel.picture) %></a>
+
+              <!-- <span><img src="images/content/product-1.jpg" alt=""></span> -->
+            </figure>
+            <div class="product_info">
+              <% if current_user.role_admin? %>
+
+                <br>
+              <% end %>
+              <h2 class="product_name"><a href="<%= edit_backend_carousel_path(carousel) %>"><%= carousel.title %></a></h2>
+              <p class="product_description">
+                <% unless carousel.description.nil?  %>
+              <%= truncate(strip_tags(carousel.description).to_s, :length => 100, :separator => ' ')  %>
+                <%end%>
+                </p>
+            </div>
+          </div><!-- .products_item -->
+
+         <% end %>
+
+
+
+
+
+
+
+
+

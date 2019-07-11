@@ -1,0 +1,49 @@
+
+
+  <div class="content_actions content_actions-top">
+    <%= form_tag backend_favorites_path, {:class => 'searcher'} do %>
+      <%= text_field_tag :search, (params[:search].present? ? params[:search] : nil), placeholder: 'Search'%>
+      <%= (hidden_field_tag "active", params[:active]) if params[:active].present? %>
+      <button type="submit"><span class="icon_search"><%=t('backend.favorites.index.search')%></span></button>
+    <% end %>
+
+  </div><!-- .content_actions content_actions-top -->
+
+  <div class="content_box">
+
+    <div class="tabs">
+      <nav class="tabs_menu">
+        <ul>
+          <li <%= params['kind']=='catalogs' ? "class= active" : ""  %>><a href="<%= backend_favorites_path(kind: 'catalogs',search: params[:search]) %>"><%=t('backend.favorites.index.catalogs')%></a></li>
+          <li <%= params['kind']=='products' ? "class= active" : ""  %>><a href="<%= backend_favorites_path(kind: 'products', search: params[:search]) %>"><%=t('backend.favorites.index.products')%></a></li>
+          <li <%= params['kind']=='posts' ? "class= active" : ""  %>><a href="<%= backend_favorites_path(kind: 'posts', search: params[:search]) %>"><%=t('backend.favorites.news')%></a></li>
+          <li <%= params['kind']=='companies' ? "class= active" : ""  %>><a href="<%= backend_favorites_path(kind: 'companies', search: params[:search]) %>"><%=t('backend.favorites.index.companies')%></a></li>
+        </ul>
+      </nav>
+
+      <div class="tabs_content active">
+
+
+        <div class="products_grid">
+
+          <div class = "sort_paginate_ajax">
+
+            <%= render 'catalogs' if params[:kind] == 'catalogs' %>
+            <%= render 'products' if params[:kind] == 'products' %>
+            <%= render 'posts' if params[:kind] == 'posts' %>
+            <%= render 'companies' if params[:kind] == 'companies' %>
+
+          </div>
+
+
+
+        </div><!-- .products_grid -->
+
+
+      </div><!-- .tabs_content -->
+
+
+
+    </div><!-- .tabs -->
+
+  </div><!-- .content_box -->

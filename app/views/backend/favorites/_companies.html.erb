@@ -1,0 +1,31 @@
+
+
+        <nav class="pagination">
+          <% unless params[:search].present? %>
+          <%= js_will_paginate @items_all %>
+          <% end %>
+        </nav><!-- .pagination -->
+
+
+<div class="companies_grid">
+  <% @items_all.each do |company| %>
+     <div class="companies_item">
+       <figure class="companies_logo">
+         <a href="<%= user_path(company) %>" >
+           <img src="<%= company.company_picture.url %>" alt="<%= company.company_name %>">
+         </a>
+       </figure>
+       <h3 class="companies_name"><a href="<%= user_path(company) %>"><%= company.company_name %></a></h3>
+     </div><!-- .companies_item -->
+  <% end %>
+</div>
+
+
+
+        <nav class="pagination">
+          <% unless params[:search].present? %>
+          <%= js_will_paginate @items_all %>
+          <% end %>
+        </nav><!-- .pagination -->
+
+

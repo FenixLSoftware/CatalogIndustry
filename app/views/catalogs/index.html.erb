@@ -1,0 +1,65 @@
+<nav class="breadcrumb">
+  <ul>
+    <li><a href="<%= root_path %>"><%=t('catalogs.index.start')%></a></li>
+    <li class="current"><%=t('catalogs.index.all_catalogs')%></li>
+
+  </ul>
+</nav>
+
+
+
+<div class="container">
+
+
+
+    <section class="products products-catalogs">
+
+      <h2 class="title_L"><%=t('catalogs.index.catalogs')%></h2>
+
+      <div class="filters">
+        <span class="filters_label"><%=t('catalogs.index.order')%></span>
+        <div class="filters_group">
+          <% if @category.present? %>
+            <a class="button <%= params[:sort]=='1' ? '' : 'active'%>" href="<%= category_catalogs_categories_path(@category) %>"><%=t('catalogs.index.news')%></a>
+          <% else %>
+            <a class="button <%= params[:sort]=='1' ? '' : 'active'%>" href="<%= catalogs_path %>"><%=t('catalogs.index.news')%></a>
+          <% end %>
+
+          <% if @category.present? %>
+            <a class="button <%= params[:sort]=='1' ? 'active' : ''%>" href="<%= category_catalogs_categories_path(@category, sort: '1') %>">A-Z</a>
+          <% else %>
+            <a class="button <%= params[:sort]=='1' ? 'active' : ''%>" href="<%= catalogs_path(sort: '1') %>">A-Z</a>
+        <% end %>
+
+
+        </div>
+      </div><!-- .filters -->
+
+
+      <div class="products_grid">
+
+        <% @catalogs.each do |catalog| %>
+          <% cache [catalog, 'catalogs', I18n.locale] do %>
+            <div class="products_item product">
+              <figure class="product_media">
+                <a href="<%= catalog_path(catalog) %>"><img src="<%= catalog.first_page_picture.url %>" alt=""></a>
+                <!-- <span><img src="images/content/product-5.jpg" alt=""></span> -->
+              </figure>
+              <div class="product_info">
+                <h4 class="product_name"><a href="<%= catalog_path(catalog) %>"><%= catalog.name %></a></h4>
+                <p class="product_company"><a href="<%= user_path(catalog.user) %>"><%= catalog.user.present? ? catalog.user.company_name : 'No company'%></a></p>
+                <p class="product_description"><%= truncate(strip_tags(catalog.description).to_s, :length => 100, :separator => ' ')  %></p>
+              </div>
+            </div><!-- .products_item product -->
+          <% end %>
+        <% end %>
+
+      </div><!-- .products_grid -->
+
+      <div class="pagination">
+        <%= will_paginate @catalogs %>
+      </div>
+
+    </section><!-- .products products-catalogs -->
+
+  </div>

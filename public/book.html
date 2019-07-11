@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=UTF-8">
+
+	<script type="text/javascript" src="./js/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="./js/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="./js/three.min.js"></script>
+	<script type="text/javascript" src="./js/jquery.onebook3d-2.33.js"></script>
+	<script>
+		$(function(){
+
+			var src1 = [
+				'ga02/001.jpg',
+				'ga02/002.jpg', 'ga02/003.jpg',
+				'ga02/004.jpg', 'ga02/005.jpg',
+				'ga02/006.jpg', 'ga02/007.jpg',
+				'ga02/008.jpg', 'ga02/009.jpg',
+				'ga02/010.jpg', 'ga02/011.jpg',
+				'ga02/012.jpg'
+				];
+
+			$('#photobook').onebook(src1, {skin: 'ligth', border:0, cesh:true});
+
+		});
+	</script>
+	<style>
+		html,body{width:100%;margin:0px;padding:0px;background:#e0604a;color:#000000;min-width:800px;}
+		body * { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+		.red {border:1px solid #ffc30d;}
+		.section {width:800px;border-radius:10px; margin:50px auto;}
+	</style>
+</head>
+<body>
+
+	<p style="padding-top:20px;text-align:center;font:24px sans-serif;color:black;">Demo para Carlos</p>
+
+	<div class="section red">
+		<div style="padding:30px;">
+			<div id="photobook" style="height:100px;"></div>
+		</div>
+	</div>
+
+</body>
+</html>

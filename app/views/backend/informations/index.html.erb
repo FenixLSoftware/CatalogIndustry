@@ -1,0 +1,43 @@
+<div class="content_box">
+    <h2 class="content_title"><%=t('backend.informations.index.information_request')%></h2>
+
+    <% if @informations.present? %>
+
+    <table>
+      <tbody><tr>
+        <th><%=t('backend.informations.index.date')%></th>
+        <th><%=t('backend.informations.index.name')%></th>
+        <th><%=t('backend.informations.index.company')%></th>
+        <th><%=t('backend.informations.index.mail_phone')%></th>
+        <th class="hide-on-mobile"><%=t('backend.informations.index.country')%></th>
+        <th><%=t('backend.informations.index.actions')%></th>
+
+      </tr>
+      <% @informations.each do |information| %>
+      <tr>
+        <td><%= information.created_at.strftime("%d/%m/%Y") %></td>
+        <td><%= information.name%></td>
+        <td><%= information.company%></td>
+        <td><%= (information.email.to_s + "<br>" + information.phone.to_s).html_safe %></td>
+        <td class="hide-on-mobile"><%= information.country.to_s %></td>
+        <td><%= link_to 'Ver', backend_information_path(information)  %></td>
+      </tr>
+      <% end %>
+
+    </tbody>
+    </table>
+
+    <div class="content_actions">
+
+      <%= will_paginate @informations %>
+
+    </div><!-- .content_actions -->
+
+
+    <% else %>
+      <%=t('backend.informations.index.no_request')%>
+    <% end %>
+
+
+
+  </div>

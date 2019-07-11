@@ -1,0 +1,15 @@
+        <div class="products_item product">
+          <figure class="product_media">
+            <a href="<%= product_path(catalog) %>"><img src="<%= catalog.first_picture %>" alt=""></a>
+            <!-- <span><img src="images/content/product-5.jpg" alt=""></span> -->
+          </figure>
+          <div class="product_info">
+            <h4 class="product_name"><a href="<%= product_path(catalog) %>"><%= catalog.name %></a></h4>
+            <p class="product_company"><a href="<%= user_path(catalog.user) %>"><%= catalog.user.present? ? catalog.user.company_name : 'No company' %></a></p>
+            <p class="product_description">
+              <% unless catalog.description.nil?  %>
+                 <%= truncate(strip_tags(catalog.description).to_s, :length => 100, :separator => ' ')  %>
+              <%end%>
+            </p>
+          </div>
+        </div><!-- .products_item product -->

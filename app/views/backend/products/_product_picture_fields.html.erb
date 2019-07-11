@@ -1,0 +1,18 @@
+<br>
+<div class='nested-fields'>
+  <div class="field">
+    <% if f.object.persisted? %>
+        <%= image_tag(f.object.picture.url, width: 250) %>
+    <% else %>
+        <%= f.label :picture %>
+        <%= f.file_field :picture, class: 'product_picture required', onchange: "validateFiles(this);",
+    data: { max_file_size: 20.megabytes} %>
+    <% end %>
+    <br>
+    <%= link_to_remove_association 'remove picture', f, class: 'button' %>
+  </div>
+
+
+</div>
+<br>
+

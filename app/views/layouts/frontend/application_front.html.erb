@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="es">
+<head>
+
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KGQ3BKZ');</script>
+<!-- End Google Tag Manager -->
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-29404615-1"></script>
+
+<script>
+
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('js', new Date());
+
+
+
+  gtag('config', 'UA-29404615-1');
+
+</script>
+
+<!-- Global site tag (gtag.js) - Google AdWords: 984000230 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-984000230"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'AW-984000230');
+</script>
+
+
+<!-- Hotjar Tracking Code for https://catalogindustry.com -->
+
+<script>
+
+    (function(h,o,t,j,a,r){
+
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+
+        h._hjSettings={hjid:914543,hjsv:6};
+
+        a=o.getElementsByTagName('head')[0];
+
+        r=o.createElement('script');r.async=1;
+
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+
+        a.appendChild(r);
+
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+
+</script>
+
+<!--Start of Zendesk Chat Script-->
+<script type="text/javascript">
+window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+$.src="https://v2.zopim.com/?5i05H2KBDkdaoPf303N6nbLKTd2Wectm";z.t=+new Date;$.
+type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+</script>
+<!--End of Zendesk Chat Script-->
+
+
+
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta charset="utf-8">
+  <meta content="width=device-width,initial-scale=1.0" name="viewport">
+
+  <title>
+
+    <% unless @title.nil? %>
+        <%= @title %>
+    <% else %>
+        <% #raise "NO title" %>
+    <% end %>
+  </title>
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <%= javascript_include_tag 'frontend/application' %>
+  <%= stylesheet_link_tag 'frontend/application' %>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+  <%= javascript_include_tag "jquery.validate.localization/messages_#{I18n.locale}" %>
+
+  <%= csrf_meta_tags %>
+
+</head>
+
+<% if params[:controller]=='users' && params[:action] == 'show' %>
+  <% if @company.role_company? && @company.logo.present? %>
+  <%# cebolla %>
+    <body style='background: url(<%= (@company.logo.thumb.url)%>) no-repeat left 62px; background-size: 100% auto;'>
+  <% else %>
+      <body id="catalogs">
+  <% end %>
+<% else %>
+  <body id="catalogs">
+<% end %>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KGQ3BKZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#edeff5",
+      "text": "#838391"
+    },
+    "button": {
+      "background": "transparent",
+      "text": "#4b81e8",
+      "border": "#4b81e8"
+    }
+  },
+  "position": "top",
+  "static": true,
+  "content": {
+    "message": "<%= t('m.cookies1') %>",
+    "dismiss": "<%= t('m.cookies_ok') %>",
+    "link": "<%= t('m.cookies_learn') %>",
+    "href": "<%= privacy_policy_static_index_path %>"
+  }
+})});
+</script>
+
+
+<header id="header" class="header">
+  <div class="container">
+
+    <h1 class="logo"><a href="<%= root_path %>">Catalog Industry</a></h1>
+
+    <a id="openMenu" class="nav_menu" href="#menu">
+      <span class="fa fa-bars" aria-hidden="true"></span>
+      <span class="fa fa-times hidden" aria-hidden="true"></span>
+      <span class="screen-reader-text"><%= t('layouts.frontend.menu') %></span>
+    </a>
+
+    <a id="openSearch" class="nav_search" href="#search"><span class="fa fa-search" aria-hidden="true"></span>
+      <span class="screen-reader-text">Buscador</span></a>
+
+    <nav id="menu" class="nav">
+
+      <a class="nav_home" href="#home"><%= t('layouts.frontend.start') %></a>
+
+      <div class="dropdown nav_dropdown">
+        <a class="dropdown_link" href="#">
+          <span class="value">
+          <% if I18n.locale == :en %>
+            <span class="flag_united-kingdom"></span> Eng
+          <% end %>
+
+          <% if I18n.locale == :es %>
+            <span class="flag_spain"></span> Esp
+          <% end %>
+
+          <% if I18n.locale == :it %>
+            <span class="flag_italy"></span> Ita
+          <% end %>
+
+          <% if I18n.locale == :de %>
+            <span class="flag_germany"></span> Ger
+          <% end %>
+
+          <% if I18n.locale == :fr %>
+            <span class="flag_france"></span> Fra
+          <% end %>
+
+          <% if I18n.locale == :zh %>
+            <span class="flag_china"></span> Chi
+          <% end %>
+
+          </span>
+        </a>
+        <div class="dropdown_content">
+          <ul>
+            <li>
+              <a href="<%= change_locale_path('es') %>"><span class="flag_spain"></span> <%= t('layouts.frontend.spanish') %>
+              </a>
+            </li>
+            <li>
+              <a href="<%= change_locale_path('de') %>"><span class="flag_germany"></span> <%= t('layouts.frontend.german') %>
+              </a>
+            </li>
+            <li>
+              <a href="<%= change_locale_path('en') %>"><span class="flag_united-kingdom"></span> <%= t('layouts.frontend.english') %>
+              </a>
+            </li>
+            <li>
+              <a href="<%= change_locale_path('fr') %>"><span class="flag_france"></span> <%= t('layouts.frontend.french') %>
+              </a>
+            </li>
+            <li>
+              <a href="<%= change_locale_path('it') %>"><span class="flag_italy"></span> <%= t('layouts.frontend.italian') %>
+              </a>
+            </li>
+<!--             <li>
+              <a href="<%= change_locale_path('zh') %>"><span class="flag_china"></span> <%= t('layouts.frontend.chinese') %>
+              </a>
+            </li> -->
+          </ul>
+        </div>
+      </div><!-- .dropdown nav_dropdown -->
+
+      <%= render 'shared/menu_top_login' %>
+
+      <a class="nav_contact" href="#contact"><%= t('layouts.frontend.contact') %></a>
+
+    </nav>
+
+  </div>
+</header>
+
+<%= gflash %>
+<%= yield %>
+
+<%= render :partial => '/layouts/frontend/footer' %>
+
+<%= render :partial => '/layouts/frontend/search2' %>
+
+
+<%= render 'shared/login' %>
+
+<%= render 'shared/recovery' unless current_user.present? %>
+
+
+</body>
+</html>
+
+<% if session[:event_company] == 'OK' %>
+
+  <script>
+    gtag('event', 'conversion', {'send_to': 'AW-984000230/VquQCIzq6IQBEObNmtUD'});
+
+  </script>
+  <% session[:event_company] == '' %>
+<% end %>
+
+<% if session[:event_professional] == 'OK' %>
+
+  <script>
+    gtag('event', 'conversion', {'send_to': 'AW-984000230/y_xICKjr6IQBEObNmtUD'});
+
+  </script>
+
+  <% session[:event_professional] == '' %>
+<% end %>
+
+

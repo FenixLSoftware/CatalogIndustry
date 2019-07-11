@@ -1,0 +1,76 @@
+<% if @user.role_professional? %>
+      <tr>
+        <td align="center" valign="top">
+            <!-- BEGIN BODY // -->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateContainerMiddle">
+              <tr>
+                <td valign="top" class="bodyContent" mc:edit="body_content">
+                  <h2><strong>Bienvenido a CatalogIndustry</strong></h2>
+                  <h3>Hola: <%= @user.name.to_s %></h3>
+
+                  <p>Su registro se ha realizado satisfactoriamente. Desde este momento puede gestionar sus búsquedas y gestionar sus favoritos desde el área de cliente. </p>
+
+
+                  <p>
+                      Si tiene alguna pregunta o sugerencia, no dude en ponerse en contacto con nosotros en support@catalogindustry.com
+                  </p>
+
+                  <p>
+                      Muchas gracias por su confianza
+                  </p>
+
+                </td>
+              </tr>
+            </table>
+            <!-- // END BODY -->
+          </td>
+      </tr>
+
+<% else %>
+
+      <tr>
+        <td align="center" valign="top">
+            <!-- BEGIN BODY // -->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateContainerMiddle">
+              <tr>
+                <td valign="top" class="bodyContent" mc:edit="body_content">
+                  <h2><strong>Bienvenido a CatalogIndustry</strong></h2>
+                  <h3>Hola: <%= @user.company_name.to_s %></h3>
+
+                  <p>Su empresa ha sido registrada satisfactoriamente. En cuanto validemos sus datos, podrá subir sus catálogos y sus productos a CatalogIndustry. </p>
+
+
+                  <p>Acceda a su área privada, desde donde podrá:</p>
+
+                  <ul>
+                    <li>
+                      Añadir catálogos, productos, noticias, modificarlos, darlos de baja y gestionarlos
+                    </li>
+                    <li>
+                      Acceder a estadísticas detalladas de su empresa y de sus catálogos
+                    </li>
+                    <li>
+                      Gestionar sus datos de empresa
+                    </li>
+                    <li>
+                      Crear su propia biblioteca con sus catálogos favoritos.
+                    </li>
+
+                  </ul>
+
+
+                  <p>
+                      Si tiene alguna pregunta o sugerencia, no dude en ponerse en contacto con nosotros en support@catalogindustry.com
+                  </p>
+
+                  <p>
+                      Muchas gracias por su confianza
+                  </p>
+
+                </td>
+              </tr>
+            </table>
+            <!-- // END BODY -->
+          </td>
+      </tr>
+<% end %>
