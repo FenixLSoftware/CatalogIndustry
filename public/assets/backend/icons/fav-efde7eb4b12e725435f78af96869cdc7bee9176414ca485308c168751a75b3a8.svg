@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="20" height="20" rx="2"></rect>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Modules/favorite" transform="translate(0.000000, -212.000000)">
+            <g id="Info">
+                <g transform="translate(0.000000, 207.000000)">
+                    <g id="Group" transform="translate(0.000000, 5.000000)">
+                        <g id="Icons/ic-favorite">
+                            <g id="icons/ic-favorite">
+                                <g id="Rectangle">
+                                    <use fill="#FF5A5F" fill-rule="evenodd" xlink:href="#path-1"></use>
+                                    <rect stroke="#FF5A5F" stroke-width="1" x="0.5" y="0.5" width="19" height="19" rx="2"></rect>
+                                </g>
+                                <path d="M15.9894236,8.80587955 C15.9640777,8.73787716 15.8968467,8.68828426 15.8158686,8.6779524 L11.9302131,8.18408975 L10.1925153,5.10482136 C10.1564296,5.04057601 10.0816806,5 10.0000582,5 C9.91843584,5 9.84347212,5.04057601 9.80760122,5.10482136 L8.06968861,8.1842776 L4.18403304,8.67814025 C4.10305503,8.68847211 4.03603875,8.73787716 4.01047805,8.8060674 C3.98534694,8.87388194 4.00618213,8.94864699 4.06482138,8.99842775 L6.87671287,11.395418 L6.21277913,14.7801336 C6.1990322,14.8505781 6.23211075,14.9217739 6.29805305,14.9638528 C6.36442495,15.0063073 6.45227642,15.011755 6.524233,14.9781295 L10.0000582,13.3802612 L13.4754539,14.9781295 C13.5068141,14.9925941 13.5413962,14.9997325 13.5755487,14.9997325 C13.6200114,14.9997325 13.6642594,14.98771 13.7018486,14.9638528 C13.7680057,14.9217739 13.8010843,14.8505781 13.7871225,14.7801336 L13.1234036,11.3956059 L15.9352951,8.99842775 C15.9937195,8.94827129 16.0147695,8.87369408 15.9894236,8.80587955 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

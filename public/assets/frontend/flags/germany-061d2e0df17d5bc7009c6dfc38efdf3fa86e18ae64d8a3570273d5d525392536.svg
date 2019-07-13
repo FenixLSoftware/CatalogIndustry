@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 14 9" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>Icons/ic-flags/germany</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons/ic-flags/germany" fill-rule="nonzero">
+            <g>
+                <path d="M13.9727096,3.00249107 L0,3.00249107 L0,0.243857143 C0,0.113276786 0.107879142,0.00739285714 0.240920078,0.00739285714 L13.7318168,0.00739285714 C13.8648577,0.00739285714 13.9727368,0.113276786 13.9727368,0.243857143 L13.9727096,3.00249107 L13.9727096,3.00249107 Z" id="Shape" fill="#464655"></path>
+                <path d="M13.7317895,8.99263393 L0.240920078,8.99263393 C0.107879142,8.99263393 0,8.88675 0,8.75616964 L0,5.9975625 L13.9727096,5.9975625 L13.9727096,8.75616964 C13.9727096,8.88677679 13.8648304,8.99263393 13.7317895,8.99263393 Z" id="Shape" fill="#FFE15A"></path>
+                <rect id="Rectangle-path" fill="#FF4B55" x="0" y="3.0024375" width="13.9727096" height="2.99491071"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

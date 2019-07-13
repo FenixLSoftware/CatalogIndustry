@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="17px" viewBox="0 0 16 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.1 (43504) - http://www.bohemiancoding.com/sketch -->
+    <title>Icons/ic-tag</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Public-site" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Catalog-detail" transform="translate(-958.000000, -529.000000)">
+            <g id="Right-sidebar" transform="translate(930.000000, 224.000000)">
+                <g id="info">
+                    <g id="name" transform="translate(24.000000, 301.000000)">
+                        <g id="Icons/ic-tag">
+                            <rect id="bounds" x="0" y="0" width="24" height="24"></rect>
+                            <g id="tag" stroke-width="1" fill-rule="evenodd" transform="translate(5.000000, 5.000000)">
+                                <path d="M14,5.83719524 C14,6.18696708 13.798,6.67564831 13.55,6.92248729 L6.813,13.9179241 C6.566,14.1657624 6.161,14.1657624 5.914,13.9179241 L0.186,8.19365808 C-0.062,7.9468191 -0.062,7.54208312 0.186,7.29524413 L7.187,0.563635267 C7.434,0.315796936 7.923,0.11292927 8.272,0.11292927 L13.363,0.11292927 C13.714,0.11292927 14,0.399742177 14,0.749514016 L14,5.83719524 Z" id="Stroke-430" stroke="#DCE0E0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M12,3.11147327 C12,3.66411278 11.553,4.11082138 11,4.11082138 C10.447,4.11082138 10,3.66411278 10,3.11147327 C10,2.55883377 10.447,2.11212516 11,2.11212516 C11.553,2.11212516 12,2.55883377 12,3.11147327" id="Fill-431" fill="#DCE0E0"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

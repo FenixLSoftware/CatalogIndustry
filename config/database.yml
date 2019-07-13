@@ -35,10 +35,10 @@ production:
   adapter: mysql2
   encoding: utf8mb4
   reconnect: false
-  database: catalogIndustry_production
+  database: catalog_production
   pool: 5
   username: root
-  password:
+  password: 11C23a58r13D.2273
   host: localhost
 
 staging:

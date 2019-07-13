@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="80px" height="80px" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Company-view" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Dashboard" transform="translate(-347.000000, -208.000000)">
+            <g id="Summary-row" transform="translate(270.000000, 140.000000)">
+                <g id="Get-started">
+                    <g id="list" transform="translate(0.000000, 51.000000)">
+                        <g id="item">
+                            <g id="Group-2" transform="translate(77.000000, 17.000000)">
+                                <circle id="Oval" fill="#DCE0E0" cx="40" cy="40" r="40"></circle>
+                                <polyline id="Stroke-140" stroke="#FF5A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="57 33 38.3333333 50 29 38.6666667"></polyline>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

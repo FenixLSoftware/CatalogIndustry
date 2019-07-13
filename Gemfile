@@ -101,3 +101,5 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
 end
+
+gem "rails-ujs", "~> 0.1.0"

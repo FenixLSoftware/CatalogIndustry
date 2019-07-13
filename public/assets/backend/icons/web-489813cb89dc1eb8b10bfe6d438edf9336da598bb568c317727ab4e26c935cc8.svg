@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="17px" viewBox="0 0 16 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.1 (43504) - http://www.bohemiancoding.com/sketch -->
+    <title>Icons/ic-web</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Public-site" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Catalog-detail" transform="translate(-958.000000, -591.000000)">
+            <g id="Right-sidebar" transform="translate(930.000000, 224.000000)">
+                <g id="info">
+                    <g id="web" transform="translate(24.000000, 363.000000)">
+                        <g id="Icons/ic-web">
+                            <rect id="bounds" x="0" y="0" width="24" height="24"></rect>
+                            <g id="link" stroke-width="1" fill-rule="evenodd" transform="translate(5.000000, 5.000000)" stroke="#DCE0E0" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12.8154,7.4815899 C14.3944,5.90361923 14.3944,3.34328937 12.8154,1.76631806 C11.2354,0.187348044 8.6754,0.187348044 7.0964,1.76631806 L1.1844,7.67346473 C-0.3946,9.2514354 -0.3946,11.8107659 1.1844,13.3887366 C2.7644,14.9677066 5.3254,14.9677066 6.9034,13.3887366 L12.8154,7.4815899 Z" id="Stroke-198" stroke-width="2"></path>
+                                <path d="M4.167,4.79194439 L9.733,10.3553153" id="Stroke-199" stroke-width="2"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

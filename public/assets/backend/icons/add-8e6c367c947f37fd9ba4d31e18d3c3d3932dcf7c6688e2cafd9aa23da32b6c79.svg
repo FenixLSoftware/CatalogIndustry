@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="150px" height="150px" viewBox="0 0 150 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>Button/add</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="150" height="150" rx="22"></rect>
+    </defs>
+    <g id="Company-view" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="New-products" transform="translate(-1162.000000, -763.000000)">
+            <g id="Module-image" transform="translate(270.000000, 675.000000)">
+                <g id="Button/add" transform="translate(892.000000, 88.000000)">
+                    <g>
+                        <g id="Rectangle">
+                            <use fill="#FF5A5F" fill-rule="evenodd" xlink:href="#path-1"></use>
+                            <rect stroke="#FF5A5F" stroke-width="2" x="1" y="1" width="148" height="148" rx="22"></rect>
+                        </g>
+                        <polygon id="Shape" fill="#FFFFFF" fill-rule="nonzero" points="110.869565 73.2919255 76.7080745 73.2919255 76.7080745 39.1304348 73.2919255 39.1304348 73.2919255 73.2919255 39.1304348 73.2919255 39.1304348 76.7080745 73.2919255 76.7080745 73.2919255 110.869565 76.7080745 110.869565 76.7080745 76.7080745 110.869565 76.7080745"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

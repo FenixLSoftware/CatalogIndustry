@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="17px" viewBox="0 0 12 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.1 (43504) - http://www.bohemiancoding.com/sketch -->
+    <title>Icons/ic-phone</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Public-site" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Catalog-detail" transform="translate(-960.000000, -560.000000)">
+            <g id="Right-sidebar" transform="translate(930.000000, 224.000000)">
+                <g id="info">
+                    <g id="phone" transform="translate(24.000000, 332.000000)">
+                        <g id="Icons/ic-phone">
+                            <rect id="bounds" x="0" y="0" width="24" height="24"></rect>
+                            <g id="phone" stroke-width="1" fill-rule="evenodd" transform="translate(7.000000, 5.000000)" stroke="#DCE0E0" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9,14.9387223 L1,14.9387223 C0.448,14.9387223 0,14.4910143 0,13.9393742 L0,1.94719687 C0,1.39555671 0.448,0.947848761 1,0.947848761 L9,0.947848761 C9.553,0.947848761 10,1.39555671 10,1.94719687 L10,13.9393742 C10,14.4910143 9.553,14.9387223 9,14.9387223 Z" id="Stroke-32" stroke-width="2"></path>
+                                <path d="M4,11.940678 L6,11.940678" id="Stroke-33" stroke-width="2"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
