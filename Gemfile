@@ -26,7 +26,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'high_voltage'
 gem 'mysql2', '~> 0.3.18'
-gem 'mysql'
 gem 'grim'
 gem 'impressionist'
 gem 'searchkick'
