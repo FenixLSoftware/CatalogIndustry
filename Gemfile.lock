@@ -242,7 +242,6 @@ GEM
     multi_json (1.13.1)
     multipart-post (2.0.0)
     mustermann (1.0.2)
-    mysql (2.9.1)
     mysql2 (0.3.21)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -511,7 +510,6 @@ DEPENDENCIES
   lol_dba
   mailcatcher
   mini_magick
-  mysql
   mysql2 (~> 0.3.18)
   omniauth
   omniauth-linkedin
