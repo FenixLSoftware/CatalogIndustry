@@ -46,7 +46,7 @@ gem 'activemodel-serializers-xml'
 
 gem 'ancestry'
 gem 'socialization'
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 1.3'
 gem 'friendly_id'
 gem 'friendly_id-globalize'
 gem 'font-awesome-rails'
